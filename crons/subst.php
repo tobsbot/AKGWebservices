@@ -29,9 +29,9 @@ $weeks = array(
 	date("W", strtotime('+1 Week'))
 );
 
-#######################################################
-print("Establishing connection to database...");
-#######################################################
+##########################################################
+print("Establishing connection to database...\r\n");
+#########################################################
 
 $credentials = json_decode(file_get_contents(CRED_FILE)) ->akgwebservices;
 $conn = mysqli_connect(
@@ -45,9 +45,9 @@ if (!$conn) {
 	exit();
 }
 
-#######################################################
-print("Connected to database. Ensuring datasource...");
-#######################################################
+##########################################################
+print("Connected to database. Ensuring datasource...\r\n");
+##########################################################
 
 if(!mysqli_select_db($conn, "akgwebservices")) {
 	printf("Selection failed: %s\r\n", mysqli_error($conn));
@@ -93,16 +93,16 @@ foreach($weeks as $week) {
 	}
 }
 
-#######################################################
-print("Closing connection to database...");
-#######################################################
+##########################################################
+print("Closing connection to database...\r\n");
+##########################################################
 
 mysqli_stmt_close($insert);
 mysqli_close($conn);
 
-#######################################################
-print("cron job successfully finished!");
-#######################################################
+##########################################################
+print("cron job successfully finished!\r\n");
+##########################################################
 
 function get_data($url) {
 	$ch = curl_init();
