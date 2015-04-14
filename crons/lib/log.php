@@ -4,6 +4,14 @@
 
 		public function __construct($file) {
 			$this->file = $file;
+
+			if(!file_exists($file)) {
+				$tmp = fopen($file, "w");
+				fwrite($tmp, $"# This is a log file:\r\n");
+				fclose($tmp);
+			}
+
+			file_put_contents($this->file, "\r\n", FILE_APPEND | LOCK_EX);
 		}
 
 		public function i($str) {
