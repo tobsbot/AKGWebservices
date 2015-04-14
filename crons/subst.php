@@ -54,6 +54,7 @@ $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
 
 foreach($weeks as $week) {
+	printf("Parsing \"" . URL_SUBST . "\" ...", $week);
 	$toParse = get_data(sprintf(URL_SUBST, $week));
 
 	$html = str_get_html($toParse);
