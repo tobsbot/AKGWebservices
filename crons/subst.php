@@ -41,17 +41,9 @@ if (!$conn) {
 	exit();
 }
 
-
 if(!mysqli_select_db($conn, "akgwebservices")) {
 	printf("Selection failed: %s\r\n", mysqli_error($conn));
 	exit();
-}
-
-/* return name of current default database */
-if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
-    $row = mysqli_fetch_row($result);
-    printf("Using database \"%s\":\r\n", $row[0]);
-    mysqli_free_result($result);
 }
 
 if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
@@ -61,7 +53,6 @@ if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
 
 $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
-
 foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
@@ -80,7 +71,7 @@ foreach($weeks as $week) {
 
 	foreach($arr as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
-		$date			= sqlDate($tr->find('td', 1) ->plaintext);
+		$date			= sqlDate($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
 		$type			= tidyUp($tr->find('td', 3) ->plaintext);
 		$lesson			= tidyUp($tr->find('td', 4) ->plaintext);
