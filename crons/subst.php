@@ -1,6 +1,6 @@
 <?php
 include('lib/simple_html_dom.php');
-header('Content-Type: text/plain; charset=ISO-8859-1');
+header('Content-Type: text/plain; charset=utf-8');
 
 define("CRED_FILE",	"lib/credentials.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
@@ -89,7 +89,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n", mysqli_stmt_affected_rows($insert));
+		printf("%d row inserted: [$formKey,\t$date,\t$period,\t\t$type,\t$lesson,\t$lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
