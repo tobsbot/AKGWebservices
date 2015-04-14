@@ -101,7 +101,7 @@ mysqli_stmt_close($insert);
 mysqli_close($conn);
 
 ##########################################################
-print("cron job successfully finished!\r\n");
+print("Cron job successfully finished!\r\n");
 ##########################################################
 
 function get_data($url) {
