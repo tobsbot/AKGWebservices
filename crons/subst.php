@@ -45,7 +45,7 @@ if(!mysqli_select_db("akgwebservices", $conn);) {
 	exit();
 }
 
-if (!mysqli_query($conn, SQL_CREATE) && !mysqli_query($conn, SQL_CLEAR)) {
+if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
 	printf("Creation / Clearing failed: %s\n", mysqli_error($conn));
 	exit();
 }
