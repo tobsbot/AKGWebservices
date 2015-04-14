@@ -40,7 +40,7 @@ if (!$conn) {
 	exit();
 }
 
-if(!mysqli_select_db("akgwebservices", $conn);) {
+if(!mysqli_select_db("akgwebservices", $conn)) {
 	printf("Selection failed: %s\n", mysqli_error($conn));
 	exit();
 }
