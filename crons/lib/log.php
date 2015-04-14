@@ -24,7 +24,7 @@
 
 		public function log($level, $str) {
 			$timestamp = date("d.m-Y H:i:s", time());
-			file_put_contents($this->file, "[$timestamp] ($level) $str", FILE_APPEND | LOCK_EX);
+			file_put_contents($this->file, "[$timestamp] ($level) $str\r\n", FILE_APPEND | LOCK_EX);
 		}
 	}
 ?>
