@@ -58,7 +58,6 @@ foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)), true, true, "ISO-8859-1");
-	print(get_data(sprintf(URL_SUBST, $week)));
 	if(empty($html)) {
 		print("No resource on this url!");
 		continue;
