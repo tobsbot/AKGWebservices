@@ -6,7 +6,6 @@ define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/
 define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung table.subst tr[class=list even]");
 
 $credentials = json_decode('lib/credentials.json', true)['akgwebservices'];
-$log = new Log('log/subst.txt');
 
-echo("Password: " . $credentials['pair']['passwd']);
+var_dump($credentials);
 ?>
