@@ -53,13 +53,12 @@ if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
 
 $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
+
 foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
-	print(get_data(sprintf(URL_SUBST, $week)));
-
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
-	print(get_data(sprintf(URL_SUBST, $week));
+	print(get_data(sprintf(URL_SUBST, $week)));
 	if(empty($html)) {
 		print("No resource on this url!");
 		continue;
