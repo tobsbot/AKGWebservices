@@ -8,5 +8,5 @@ define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung tab
 $credentials = json_decode('lib/credentials.json', true)['akgwebservices'];
 $log = new Log('log/subst.txt');
 
-echo("Password: " . $credentials->pair->passwd);
+echo("Password: " . $credentials['pair']['passwd']);
 ?>
