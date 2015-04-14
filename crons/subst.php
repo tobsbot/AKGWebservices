@@ -56,6 +56,8 @@ mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $l
 foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
+	print(get_data(sprintf(URL_SUBST, $week)));
+
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
 	print(get_data(sprintf(URL_SUBST, $week));
 	if(empty($html)) {
