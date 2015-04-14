@@ -81,7 +81,7 @@ foreach($weeks as $week) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
 		$date			= sqlDate($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
-		$type			= $tr->find('td', 3) ->plaintext;
+		$type			= tidyUp($tr->find('td', 3) ->plaintext);
 		$lesson			= tidyUp($tr->find('td', 4) ->plaintext);
 		$lessonSubst	= tidyUp($tr->find('td', 5) ->plaintext);
 		$room			= tidyUp($tr->find('td', 6) ->plaintext);
