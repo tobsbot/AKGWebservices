@@ -40,8 +40,15 @@ if (!$conn) {
 	exit();
 }
 
+/*
+$db_selected = mysqli_select_db("akgwebservices", $conn);
+if(!$db_selected) {
+	printf("Selection failed: %s\n", mysqli_error($conn));
+	exit();
+}
+*/
 if (!mysqli_query($conn, SQL_CREATE) && !mysqli_query($conn, SQL_CLEAR)) {
-	printf("Creation / Clearing failed: %s\n", mysqli_connect_error());
+	printf("Creation / Clearing failed: %s\n", mysqli_error($conn));
 	exit();
 }
 
