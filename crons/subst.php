@@ -49,7 +49,7 @@ if(!mysqli_select_db($conn, "akgwebservices")) {
 /* return name of current default database */
 if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
     $row = mysqli_fetch_row($result);
-    printf("Default database is %s.\n", $row[0]);
+    printf("Using database \"%s\".\n", $row[0]);
     mysqli_free_result($result);
 }
 
@@ -64,6 +64,8 @@ mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $l
 foreach($weeks as $week) {
 	printf("Parsing \"" . URL_SUBST . "\" ...", $week);
 	$toParse = get_data(sprintf(URL_SUBST, $week));
+
+	print($toParse);
 
 	$html = str_get_html($toParse);
 	if(empty($html)) {
@@ -87,7 +89,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($stmt);
-		printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
+		//printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
 	}
 
 }
