@@ -13,7 +13,7 @@ define("SQL_CREATE",
 	`date` date NOT NULL,
 	`period` varchar(7) NOT NULL DEFAULT '1',
 	`type` varchar(50) NOT NULL DEFAULT 'Sonstige',
-	`lesson` varchar(10) NOT NULL DEFAULT '',
+	`lesson` varchar(10) NOT NULL ,
 	`lessonSubst` varchar(10) NOT NULL DEFAULT '',
 	`room` varchar(10) NOT NULL DEFAULT '',
 	`roomSubst` varchar(10) NOT NULL DEFAULT '',
@@ -87,7 +87,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d Row inserted: \r\n", mysqli_stmt_affected_rows($insert));
+		printf("%d Row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
@@ -110,9 +110,8 @@ function tidyUp($str) {
 	$ret = strip_tags($str);
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO-8859-1");
 	$ret = str_replace("\xA0", ' ', $ret);
-	$ret = trim($ret);
 
-	return utf8_encode($ret);
+	return trim($ret);
 }
 
 function sqlDate($str) {
