@@ -6,7 +6,7 @@ define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/
 define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung table.subst tr[class=list even]");
 
 define("SQL_CREATE",
-	"CREATE TABLE [IF NOT EXISTS] `Substitution` (
+	"CREATE TABLE IF NOT EXISTS `Substitution` (
 	`_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY',
 	`formKey` varchar(10) NOT NULL DEFAULT '',
 	`date` date NOT NULL,
