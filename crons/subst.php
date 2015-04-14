@@ -89,7 +89,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d row inserted: [$formKey,\t$date,\t$period,\t\t$type,\t$lesson,\t$lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
+		printf("%d row inserted: [$formKey,\t\t$date,\t$period,\t\t$type,\t$lesson,\t$lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
