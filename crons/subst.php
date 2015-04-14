@@ -7,6 +7,6 @@ define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/
 define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung table.subst tr[class=list even]");
 
 $credentials = Json::decode('lib/credentials.json');
-
+echo "hi";
 var_dump($credentials);
 ?>
