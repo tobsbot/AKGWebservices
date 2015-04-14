@@ -29,7 +29,6 @@ $weeks = array(
 );
 
 $credentials = json_decode(file_get_contents(CRED_FILE)) ->akgwebservices;
-printf("Username: %s, Password: %s\r\n", $credentials ->pair ->user, $credentials ->pair ->passwd);
 $conn = mysqli_connect(
 	$credentials ->server,
 	$credentials ->pair ->user,
