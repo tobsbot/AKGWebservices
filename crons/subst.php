@@ -9,5 +9,4 @@ define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung tab
 
 $credentials = json_decode(file_get_contents(CRED_FILE))
 	->akgwebservices ->pair;
-$log = new Log(LOG_FILE);
 ?>
