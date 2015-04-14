@@ -117,6 +117,10 @@ function get_data($url) {
 }
 
 function tidyUp($str) {
+	if(!isset($str)) {
+		return '';
+	}
+	
 	$ret = strip_tags($str);
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
 	$ret = str_replace("\xA0", ' ', $ret);
