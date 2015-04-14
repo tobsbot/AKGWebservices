@@ -77,6 +77,8 @@ foreach($weeks as $week) {
 		continue;
 	}
 
+	print("hi2");
+
 	foreach($arr as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0) ->plaintext);
 		$date			= sqlDate($tr->find('td', 1) ->plaintext);
