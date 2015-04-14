@@ -36,25 +36,25 @@ $conn = mysqli_connect(
 );
 
 if (!$conn) {
-	printf("Connect failed: %s\n", mysqli_connect_error());
+	printf("Connect failed: %s" . PHP_EOL, mysqli_connect_error());
 	exit();
 }
 
 
 if(!mysqli_select_db($conn, "akgwebservices")) {
-	printf("Selection failed: %s\n", mysqli_error($conn));
+	printf("Selection failed: %s" . PHP_EOL, mysqli_error($conn));
 	exit();
 }
 
 /* return name of current default database */
 if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
     $row = mysqli_fetch_row($result);
-    printf("Using database \"%s\".\n", $row[0]);
+    printf("Using database \"%s\"." . PHP_EOL, $row[0]);
     mysqli_free_result($result);
 }
 
 if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
-	printf("Creation / Clearing failed: %s\n", mysqli_error($conn));
+	printf("Creation / Clearing failed: %s" . PHP_EOL, mysqli_error($conn));
 	exit();
 }
 
@@ -62,15 +62,15 @@ $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
 
 foreach($weeks as $week) {
-	printf("Parsing \"" . URL_SUBST . "\" ...", $week);
+	printf("Parsing \"" . URL_SUBST . "\" ..." . PHP_EOL, $week);
 	$toParse = get_data(sprintf(URL_SUBST, $week));
-
-	print($toParse);
 
 	$html = str_get_html($toParse);
 	if(empty($html)) {
 		continue;
 	}
+
+	print("hi");
 
 	$arr = $html ->find(SEL_SUBST);
 	if(count($arr) < 1) {
