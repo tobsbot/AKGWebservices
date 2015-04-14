@@ -21,7 +21,7 @@ define("SQL_CREATE",
 	PRIMARY KEY (`_id`)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8"
 );
 define("SQL_CLEAR", "TRUNCATE `Substitution`");
-define("SQL_INSERT", "INSERT INTO `Substitution` (`formKey`, `date`, `period`, `type`, `lesson`, `lessonSubst`, `room`, `roomSubst`, `annotation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+define("SQL_INSERT", "INSERT INTO `Substitution` (`formKey`, `date`, `period`, `type`, `lesson`, `lessonSubst`, `room`, `roomSubst`, `annotation`) VALUES (?, CAST('?' AS date), ?, ?, ?, ?, ?, ?, ?)");
 
 date_default_timezone_set('Europe/Berlin');
 $weeks = array(
@@ -37,25 +37,25 @@ $conn = mysqli_connect(
 );
 
 if (!$conn) {
-	printf("Connect failed: %s" . PHP_EOL, mysqli_connect_error());
+	printf("Connect failed: %s\r\n", mysqli_connect_error());
 	exit();
 }
 
 
 if(!mysqli_select_db($conn, "akgwebservices")) {
-	printf("Selection failed: %s" . PHP_EOL, mysqli_error($conn));
+	printf("Selection failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
 
 /* return name of current default database */
 if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
     $row = mysqli_fetch_row($result);
-    printf("Using database \"%s\"." . PHP_EOL, $row[0]);
+    printf("Using database \"%s\":\r\n", $row[0]);
     mysqli_free_result($result);
 }
 
 if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
-	printf("Creation / Clearing failed: %s" . PHP_EOL, mysqli_error($conn));
+	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
 
@@ -63,22 +63,17 @@ $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
 
 foreach($weeks as $week) {
-	printf("Parsing \"" . URL_SUBST . "\" ..." . PHP_EOL, $week);
-	$toParse = get_data(sprintf(URL_SUBST, $week));
+	printf("Parsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
-	$html = str_get_html($toParse);
+	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
 	if(empty($html)) {
 		continue;
 	}
-
-	print("hi");
 
 	$arr = $html ->find(SEL_SUBST);
 	if(count($arr) < 1) {
 		continue;
 	}
-
-	print("hi2");
 
 	foreach($arr as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
@@ -94,7 +89,7 @@ foreach($weeks as $week) {
 		//print("$formKey, $date, $period" . PHP_EOL);
 
 		mysqli_stmt_execute($insert);
-		printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
+		printf("%d Row inserted: \r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
