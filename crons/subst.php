@@ -21,7 +21,7 @@ define("SQL_CREATE",
 	PRIMARY KEY (`_id`)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8"
 );
 define("SQL_CLEAR", "TRUNCATE `Substitution`");
-define("SQL_INSERT", "INSERT INTO `Substitution` (`formKey`, `date`, `period`, `type`, `lesson`, `lessonSubst`, `room`, `roomSubst`, `annotation`) VALUES (?, CAST('?' AS date), ?, ?, ?, ?, ?, ?, ?)");
+define("SQL_INSERT", "INSERT INTO `Substitution` (`formKey`, `date`, `period`, `type`, `lesson`, `lessonSubst`, `room`, `roomSubst`, `annotation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 date_default_timezone_set('Europe/Berlin');
 $weeks = array(
@@ -120,6 +120,6 @@ function sqlDate($str) {
 	$tmp = tidyUp($str)
 		. date("Y", strtotime("now"));
 
-	return date('d-m-Y', strtotime($tmp));
+	return date('YYYY-MM-DD', strtotime($tmp));
 }
 ?>
