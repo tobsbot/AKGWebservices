@@ -1,5 +1,6 @@
 <?php
 include('lib/simple_html_dom.php');
+header('Content-Type: text/plain');
 
 define("CRED_FILE",	"lib/credentials.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
@@ -80,7 +81,7 @@ foreach($weeks as $week) {
 	print("hi2");
 
 	foreach($arr as $tr) {
-		$formKey		= tidyUp($tr->find('td', 0) ->plaintext);
+		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
 		$date			= sqlDate($tr->find('td', 1) ->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
 		$type			= tidyUp($tr->find('td', 3) ->plaintext);
@@ -89,6 +90,8 @@ foreach($weeks as $week) {
 		$room			= tidyUp($tr->find('td', 6) ->plaintext);
 		$roomSubst		= tidyUp($tr->find('td', 7) ->plaintext);
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
+
+		print("$formKey, $date, $period" . PHP_EOL);
 
 		mysqli_stmt_execute($stmt);
 		//printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
