@@ -1,6 +1,6 @@
 <?php
 include('lib/simple_html_dom.php');
-header('Content-Type: text/plain; charset=utf-8');
+header('Content-Type: text/plain; charset=ISO-8859-1');
 
 define("CRED_FILE",	"lib/credentials.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
@@ -100,7 +100,7 @@ mysqli_close($conn);
 function get_data($url) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_ENCODING, "UTF-8");
+	curl_setopt($ch, CURLOPT_ENCODING, "ISO-8859-1");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 	$data = curl_exec($ch);
