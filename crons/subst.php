@@ -110,8 +110,9 @@ function tidyUp($str) {
 	$ret = strip_tags($str);
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO-8859-1");
 	$ret = str_replace("\xA0", ' ', $ret);
+	$ret = trim($ret);
 
-	return trim($ret);
+	return utf8_encode($ret);
 }
 
 function sqlDate($str) {
