@@ -63,9 +63,10 @@ $insert = mysqli_prepare($conn, SQL_INSERT);
 mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
 
 foreach($weeks as $week) {
-	printf("Parsing \"" . URL_SUBST . "\" ...\r\n", $week);
+	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
+	print(get_data(sprintf(URL_SUBST, $week));
 	if(empty($html)) {
 		print("No resource on this url!");
 		continue;
@@ -89,7 +90,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d row inserted: [$formKey,\t\t$date,\t$period,\t\t$type,\t$lesson,\t$lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
+		printf("%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
