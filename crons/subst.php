@@ -86,8 +86,6 @@ foreach($weeks as $week) {
 		$roomSubst		= tidyUp($tr->find('td', 7) ->plaintext);
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
-		//print("$formKey, $date, $period" . PHP_EOL);
-
 		mysqli_stmt_execute($insert);
 		printf("%d Row inserted: \r\n", mysqli_stmt_affected_rows($insert));
 	}
@@ -120,6 +118,6 @@ function sqlDate($str) {
 	$tmp = tidyUp($str)
 		. date("Y", strtotime("now"));
 
-	return date('YYYY-MM-DD', strtotime($tmp));
+	return date('Y-m-d', strtotime($tmp));
 }
 ?>
