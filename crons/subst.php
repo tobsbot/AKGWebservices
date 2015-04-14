@@ -29,6 +29,10 @@ $weeks = array(
 	date("W", strtotime('+1 Week'))
 );
 
+#######################################################
+print("Establishing connection to database...");
+#######################################################
+
 $credentials = json_decode(file_get_contents(CRED_FILE)) ->akgwebservices;
 $conn = mysqli_connect(
 	$credentials ->server,
@@ -40,6 +44,10 @@ if (!$conn) {
 	printf("Connect failed: %s\r\n", mysqli_connect_error());
 	exit();
 }
+
+#######################################################
+print("Connected to database. Ensuring datasource...");
+#######################################################
 
 if(!mysqli_select_db($conn, "akgwebservices")) {
 	printf("Selection failed: %s\r\n", mysqli_error($conn));
@@ -85,8 +93,16 @@ foreach($weeks as $week) {
 	}
 }
 
+#######################################################
+print("Closing connection to database...");
+#######################################################
+
 mysqli_stmt_close($insert);
 mysqli_close($conn);
+
+#######################################################
+print("cron job successfully finished!");
+#######################################################
 
 function get_data($url) {
 	$ch = curl_init();
