@@ -1,6 +1,6 @@
 <?php
 include('lib/simple_html_dom.php');
-header('Content-Type: text/plain');
+header('Content-Type: text/plain; charset=utf-8');
 
 define("CRED_FILE",	"lib/credentials.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
@@ -89,7 +89,7 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d Row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n", mysqli_stmt_affected_rows($insert));
+		printf("%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
 
 }
@@ -100,6 +100,7 @@ mysqli_close($conn);
 function get_data($url) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_ENCODING, "UTF-8");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 	$data = curl_exec($ch);
