@@ -13,11 +13,11 @@ define("SQL_CREATE",
 	`date` date NOT NULL,
 	`period` varchar(7) NOT NULL DEFAULT '1',
 	`type` varchar(50) NOT NULL DEFAULT 'Sonstige',
-	`lesson` varchar(10) NOT NULL,
-	`lessonSubst` varchar(10) NOT NULL,
-	`room` varchar(10) NOT NULL,
-	`roomSubst` varchar(10) NOT NULL,
-	`annotation` varchar(350) NOT NULL,
+	`lesson` varchar(10) NOT NULL DEFAULT '',
+	`lessonSubst` varchar(10) NOT NULL DEFAULT '',
+	`room` varchar(10) NOT NULL DEFAULT '',
+	`roomSubst` varchar(10) NOT NULL DEFAULT '',
+	`annotation` varchar(350) NOT NULL DEFAULT '',
 	PRIMARY KEY (`_id`)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8"
 );
 define("SQL_CLEAR", "TRUNCATE `Substitution`");
@@ -98,7 +98,6 @@ mysqli_close($conn);
 function get_data($url) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_ENCODING ,"");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 	$data = curl_exec($ch);
@@ -109,7 +108,7 @@ function get_data($url) {
 
 function tidyUp($str) {
 	$ret = strip_tags($str);
-    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
+    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO-8859-1");
 	$ret = str_replace("\xA0", ' ', $ret);
 
 	return trim($ret);
