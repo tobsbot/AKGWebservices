@@ -40,22 +40,11 @@ if (!$conn) {
 	exit();
 }
 
-/*
-if(!mysqli_select_db("akgwebservices", $conn)) {
+
+if(!mysqli_select_db($conn, "akgwebservices")) {
 	printf("Selection failed: %s\n", mysqli_error($conn));
 	exit();
 }
-*/
-
-/* return name of current default database */
-if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
-    $row = mysqli_fetch_row($result);
-    printf("Default database is %s.\n", $row[0]);
-    mysqli_free_result($result);
-}
-
-/* change db to world db */
-mysqli_select_db($conn, "akgwebservices");
 
 /* return name of current default database */
 if ($result = mysqli_query($conn, "SELECT DATABASE()")) {
