@@ -57,7 +57,11 @@ mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $l
 foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
-	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
+	$html = str_get_html(
+		utf8_encode(
+			get_data(sprintf(URL_SUBST, $week))
+		)
+	);
 	print(get_data(sprintf(URL_SUBST, $week)));
 	if(empty($html)) {
 		print("No resource on this url!");
@@ -103,7 +107,7 @@ function get_data($url) {
 
 function tidyUp($str) {
 	$ret = strip_tags($str);
-    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO-8859-1");
+    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
 	$ret = str_replace("\xA0", ' ', $ret);
 
 	return trim($ret);
