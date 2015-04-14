@@ -67,13 +67,13 @@ foreach($weeks as $week) {
 
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)), true, true, "ISO-8859-1");
 	if(empty($html)) {
-		print("No resource on this url!");
+		print("No resource on this url!\r\n");
 		continue;
 	}
 
 	$arr = $html ->find(SEL_SUBST);
 	if(count($arr) < 1) {
-		print("No entries on this resource!");
+		print("No entries on this resource!\r\n");
 		continue;
 	}
 
@@ -120,7 +120,7 @@ function tidyUp($str) {
 	if(!isset($str)) {
 		return '';
 	}
-	
+
 	$ret = strip_tags($str);
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
 	$ret = str_replace("\xA0", ' ', $ret);
