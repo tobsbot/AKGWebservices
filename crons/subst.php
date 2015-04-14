@@ -67,11 +67,13 @@ foreach($weeks as $week) {
 
 	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)));
 	if(empty($html)) {
+		print("No resource on this url!");
 		continue;
 	}
 
 	$arr = $html ->find(SEL_SUBST);
 	if(count($arr) < 1) {
+		print("No entries on this resource!");
 		continue;
 	}
 
