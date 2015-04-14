@@ -74,7 +74,7 @@ foreach($weeks as $week) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
 		$date			= sqlDate($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
-		$type			= tidyUp($tr->find('td', 3) ->plaintext);
+		$type			= $tr->find('td', 3) ->plaintext;
 		$lesson			= tidyUp($tr->find('td', 4) ->plaintext);
 		$lessonSubst	= tidyUp($tr->find('td', 5) ->plaintext);
 		$room			= tidyUp($tr->find('td', 6) ->plaintext);
@@ -84,7 +84,6 @@ foreach($weeks as $week) {
 		mysqli_stmt_execute($insert);
 		printf("%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst,\t$room,\t$roomSubst,\t$annotation]\r\n", mysqli_stmt_affected_rows($insert));
 	}
-
 }
 
 mysqli_stmt_close($insert);
