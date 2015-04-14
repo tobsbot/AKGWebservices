@@ -91,10 +91,10 @@ foreach($weeks as $week) {
 		$roomSubst		= tidyUp($tr->find('td', 7) ->plaintext);
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
-		print("$formKey, $date, $period" . PHP_EOL);
+		//print("$formKey, $date, $period" . PHP_EOL);
 
-		mysqli_stmt_execute($stmt);
-		//printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
+		mysqli_stmt_execute($insert);
+		printf("%d Row inserted.\n", mysqli_stmt_affected_rows($stmt));
 	}
 
 }
