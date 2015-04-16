@@ -17,7 +17,7 @@ print("Establishing connection to database...\r\n");
 #########################################################
 
 class json{
-	private $create = "$_SERVER['OPENSHIFT_MYSQL_DB_HOST']";
+	public $create = "['OPENSHIFT_MYSQL_DB_HOST']";
 }
 print(json_encode(new json()));
 
