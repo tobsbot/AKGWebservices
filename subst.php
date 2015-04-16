@@ -1,13 +1,23 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-define("CRED_FILE",	"crons/lib/database.json");
 
-$database = json_decode(file_get_contents(CRED_FILE));
+$database = json_decode(file_get_contents("crons/lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
 	$database ->credentials ->user,
 	$database ->credentials ->passwd
 );
+
+if (!$conn) {
+	printf("Connect failed: %s\r\n", mysqli_connect_error());
+	exit();
+}
+
+if (!mysqli_select_db($conn, $database ->name)) {
+	printf("Selection failed: %s\r\n", mysqli_error($conn));
+	exit();
+}
+
 
 $sth = mysqli_query($conn, "SELECT * FROM Substitution");
 $rows = array();
