@@ -9,13 +9,17 @@ $conn = mysqli_connect(
 );
 
 if (!$conn) {
-	printf("Connect failed: %s\r\n", mysqli_connect_error());
-	exit();
+	json_response(
+		NULL, 500,
+		sprintf("Connect failed: %s", mysqli_connect_error())
+	);
 }
 
 if (!mysqli_select_db($conn, $database ->name)) {
-	printf("Selection failed: %s\r\n", mysqli_error($conn));
-	exit();
+	json_response(
+		NULL, 500,
+		sprintf("Selection failed: %s", mysqli_error($conn))
+	);
 }
 
 $sth = mysqli_query($conn, "SELECT * FROM Substitution");
@@ -23,13 +27,14 @@ $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
     $rows[] = $r;
 }
-json_response($rows);
+
 mysqli_close($conn);
+json_response($rows);
 
 function json_response($data, $code = 200, $msg = "OK") {
 	print json_encode([
 		"code" => $code,
-		"msg" => $msg,
+		"message" => $msg,
 		"data" => $data
 	], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 	exit();
