@@ -26,7 +26,7 @@ while($r = mysqli_fetch_assoc($sth)) {
 json_response($rows);
 mysqli_close($conn);
 
-function json_response($code, $msg, $data) {
+function json_response($data, $code = 200, $msg = "OK") {
 	print json_encode([
 		"code" => $code,
 		"msg" => $msg,
