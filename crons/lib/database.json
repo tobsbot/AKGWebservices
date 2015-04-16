@@ -1,0 +1,37 @@
+{
+	"name" : "akgwebservices",
+	"server" : "",
+	"credentials" : {
+		"user" : "adminQi7y34f",
+		"passwd" : "rCGQEvpks7_D"
+	},
+	"tables" : {
+		"Substitution" : {
+			"create" : "CREATE TABLE IF NOT EXISTS `Substitution` (
+				`_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY',
+				`formKey` varchar(10) NOT NULL DEFAULT '',
+				`date` date NOT NULL,
+				`period` varchar(7) NOT NULL DEFAULT '1',
+				`type` varchar(50) NOT NULL DEFAULT 'Sonstige',
+				`lesson` varchar(10) NOT NULL ,
+				`lessonSubst` varchar(10) NOT NULL DEFAULT '',
+				`room` varchar(10) NOT NULL DEFAULT '',
+				`roomSubst` varchar(10) NOT NULL DEFAULT '',
+				`annotation` varchar(350) NOT NULL DEFAULT '',
+				PRIMARY KEY (`_id`)
+				) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
+			"insert" : "INSERT INTO `Substitution` (
+				`formKey`,
+				`date`,
+				`period`,
+				`type`,
+				`lesson`,
+				`lessonSubst`,
+				`room`,
+				`roomSubst`,
+				`annotation`
+				) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			"prepare" : "TRUNCATE `Substitution"
+		}
+	}
+}

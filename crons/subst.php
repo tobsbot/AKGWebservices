@@ -6,23 +6,6 @@ define("CRED_FILE",	"lib/credentials.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
 define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung table.subst tr[class=list even]");
 
-define("SQL_CREATE",
-	"CREATE TABLE IF NOT EXISTS `Substitution` (
-	`_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY',
-	`formKey` varchar(10) NOT NULL DEFAULT '',
-	`date` date NOT NULL,
-	`period` varchar(7) NOT NULL DEFAULT '1',
-	`type` varchar(50) NOT NULL DEFAULT 'Sonstige',
-	`lesson` varchar(10) NOT NULL ,
-	`lessonSubst` varchar(10) NOT NULL DEFAULT '',
-	`room` varchar(10) NOT NULL DEFAULT '',
-	`roomSubst` varchar(10) NOT NULL DEFAULT '',
-	`annotation` varchar(350) NOT NULL DEFAULT '',
-	PRIMARY KEY (`_id`)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8"
-);
-define("SQL_CLEAR", "TRUNCATE `Substitution`");
-define("SQL_INSERT", "INSERT INTO `Substitution` (`formKey`, `date`, `period`, `type`, `lesson`, `lessonSubst`, `room`, `roomSubst`, `annotation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 date_default_timezone_set('Europe/Berlin');
 $weeks = array(
 	date("W", strtotime("now")),
@@ -33,11 +16,11 @@ $weeks = array(
 print("Establishing connection to database...\r\n");
 #########################################################
 
-$credentials = json_decode(file_get_contents(CRED_FILE)) ->akgwebservices;
+$database = json_decode(file_get_contents(CRED_FILE));
 $conn = mysqli_connect(
-	$credentials ->server,
-	$credentials ->pair ->user,
-	$credentials ->pair ->passwd
+	$database ->server,
+	$database ->credentials ->user,
+	$database ->credentials ->passwd
 );
 
 if (!$conn) {
@@ -49,35 +32,56 @@ if (!$conn) {
 print("Connected to database. Ensuring datasource...\r\n");
 ##########################################################
 
-if(!mysqli_select_db($conn, "akgwebservices")) {
+if (!mysqli_select_db($conn, $database ->name)) {
 	printf("Selection failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
 
-if (!mysqli_query($conn, SQL_CREATE) || !mysqli_query($conn, SQL_CLEAR)) {
+if (!mysqli_query($conn, $database ->tables ->Substitution ->create) ||
+	!mysqli_query($conn, $database ->tables ->Substitution ->prepare)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
 
-$insert = mysqli_prepare($conn, SQL_INSERT);
-mysqli_stmt_bind_param($insert, 'sssssssss', $formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation);
+$insert = mysqli_prepare(
+	$conn,
+	$database ->tables ->Substitution ->insert
+);
+
+mysqli_stmt_bind_param(
+	$insert,
+	'sssssssss',
+	$formKey,
+	$date,
+	$period,
+	$type,
+	$lesson,
+	$lessonSubst,
+	$room,
+	$roomSubst,
+	$annotation
+);
 
 foreach($weeks as $week) {
 	printf("\r\nParsing \"" . URL_SUBST . "\" ...\r\n", $week);
 
-	$html = str_get_html(get_data(sprintf(URL_SUBST, $week)), true, true, "ISO-8859-1");
-	if(empty($html)) {
+	$html = str_get_html(
+		get_data(sprintf(URL_SUBST, $week)),
+		true, true, "ISO-8859-1"
+	);
+
+	if (empty($html)) {
 		print("No resource on this url!\r\n");
 		continue;
 	}
 
 	$arr = $html ->find(SEL_SUBST);
-	if(count($arr) < 1) {
+	if (count($arr) < 1) {
 		print("No entries on this resource!\r\n");
 		continue;
 	}
 
-	foreach($arr as $tr) {
+	foreach ($arr as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
 		$date			= sqlDate($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
@@ -89,7 +93,10 @@ foreach($weeks as $week) {
 		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
 
 		mysqli_stmt_execute($insert);
-		printf("%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n", mysqli_stmt_affected_rows($insert));
+		printf(
+			"%d row inserted: [$formKey, $date, $period, $type, $lesson, $lessonSubst, $room, $roomSubst, $annotation]\r\n",
+			mysqli_stmt_affected_rows($insert)
+		);
 	}
 }
 
