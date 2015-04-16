@@ -16,6 +16,11 @@ $weeks = array(
 print("Establishing connection to database...\r\n");
 #########################################################
 
+class json{
+	private $create = "$_SERVER['OPENSHIFT_MYSQL_DB_HOST']";
+}
+print(json_encode(new json()));
+
 $database = json_decode(file_get_contents(CRED_FILE));
 var_dump($database);
 $conn = mysqli_connect(
