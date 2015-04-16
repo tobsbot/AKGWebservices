@@ -9,17 +9,11 @@ $conn = mysqli_connect(
 );
 
 if (!$conn) {
-	json_response(
-		NULL, 500,
-		sprintf("Connect failed: %s", mysqli_connect_error())
-	);
+	json_response(NULL, 500, "Connection to database failed!");
 }
 
 if (!mysqli_select_db($conn, $database ->name)) {
-	json_response(
-		NULL, 500,
-		sprintf("Selection failed: %s", mysqli_error($conn))
-	);
+	json_response(NULL, 500, "Selection of datasource failed!");
 }
 
 $sth = mysqli_query($conn, "SELECT * FROM Substitution");
