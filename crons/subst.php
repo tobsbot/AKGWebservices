@@ -128,7 +128,7 @@ function tidyUp($str) {
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
 	$ret = str_replace("\xA0", ' ', $ret);
 
-	return trim($ret);
+	return utf8_encode(trim($ret));
 }
 
 function sqlDate($str) {
