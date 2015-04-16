@@ -2,7 +2,6 @@
 include('lib/simple_html_dom.php');
 header('Content-Type: text/plain; charset=utf-8');
 
-define("CRED_FILE",	"lib/database.json");
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
 define("SEL_SUBST", "#vertretung table.subst tr[class=list odd], #vertretung table.subst tr[class=list even]");
 
@@ -16,7 +15,7 @@ $weeks = array(
 print("Establishing connection to database...\r\n");
 #########################################################
 
-$database = json_decode(file_get_contents(CRED_FILE));
+$database = json_decode(file_get_contents("lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
 	$database ->credentials ->user,
