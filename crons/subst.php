@@ -125,8 +125,8 @@ function get_data($url) {
 
 function tidyUp($str) {
 	$ret = strip_tags($str);
-    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
-	$ret = str_replace("\xA0", ' ', $ret);
+    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO8859-1");
+	//$ret = str_replace("\xA0", ' ', $ret);
 
 	return utf8_encode(trim($ret));
 }
