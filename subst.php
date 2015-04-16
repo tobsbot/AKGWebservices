@@ -24,6 +24,6 @@ $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
     $rows[] = $r;
 }
-print json_encode($rows);
+print json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 mysqli_close($conn);
 ?>
