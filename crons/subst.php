@@ -17,6 +17,7 @@ print("Establishing connection to database...\r\n");
 #########################################################
 
 $database = json_decode(file_get_contents(CRED_FILE));
+var_dump($database);
 $conn = mysqli_connect(
 	$database ->server,
 	$database ->credentials ->user,
