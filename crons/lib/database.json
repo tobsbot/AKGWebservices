@@ -1,6 +1,6 @@
 {
 	"name" : "akgwebservices",
-	"server" : "",
+	"server" : "$_SERVER['OPENSHIFT_MYSQL_DB_HOST']",
 	"credentials" : {
 		"user" : "adminQi7y34f",
 		"passwd" : "rCGQEvpks7_D"
