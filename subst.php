@@ -18,12 +18,20 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
-
 $sth = mysqli_query($conn, "SELECT * FROM Substitution");
 $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
     $rows[] = $r;
 }
-print json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+json_response($rows);
 mysqli_close($conn);
+
+function json_response($code, $msg, $data) {
+	print json_encode([
+		"code" => $code,
+		"msg" => $msg,
+		"data" => $data
+	], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+	exit();
+}
 ?>
