@@ -65,14 +65,14 @@ if (empty($html)) {
 	exit();
 }
 
-$dates = $html ->find(SEL_EVENTS);
-if (count($dates) < 1) {
+$arr = $html ->find(SEL_EVENTS);
+if (count($arr) < 1) {
 	print("No entries on this resource!\r\n");
 	exit();
 }
 
-foreach($dates as $date) {
-	$el = tidyUp($date ->find("td.ev_td_left text", 0) ->plaintext);
+foreach($arr as $tr) {
+	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
 
 	if(!isset($el) || empty($el)) {
 		continue;
@@ -81,19 +81,19 @@ foreach($dates as $date) {
 	$eventDate = eventD($el);
 	//print($eventDate."\r\n");
 
+
 	// Iterate through all events this date
-	$events = $date ->find('td.ev_td_right ul.ev_ul li.ev_td_li');
-	foreach($events as $event) {
+	foreach($tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $li) {
 
 		// Get the event title
-		$title = tidyUp($event ->find('a.ev_link_row', 0)  ->plaintext);
+		$title = tidyUp($li ->find('a.ev_link_row', 0)  ->plaintext);
 
 		// Start the event description with a date string
-		$description = tidyUp($event ->find('text', 0) ->plaintext) . ": ";
+		$description = tidyUp($li ->find('text', 0) ->plaintext) . ": ";
 
-		/* Load html of description page
+		// Load html of description page
 		$tmpHtml = str_get_html(
-			get_data("http://www.akg-bensheim.de" . ($event ->find('a.ev_link_row', 0) ->href)),
+			get_data("http://www.akg-bensheim.de" . ($li ->find('a.ev_link_row', 0) ->href)),
 			true, true, "ISO-8859-1"
 		);
 
@@ -107,7 +107,7 @@ foreach($dates as $date) {
 				$description .= tidyUp($tr_temp ->plaintext);
 	    	}
 		}
-*/
+
 		if(!event_exists($conn, $title, $eventDate)) {
 			mysqli_stmt_execute($insert);
 			printf(
@@ -118,6 +118,7 @@ foreach($dates as $date) {
 			break 2;
 		}
 	}
+	
 }
 
 ##########################################################
