@@ -72,7 +72,7 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr)
-	echo $tr ->innertext;
+	echo $tr ->innertext . "\r\n\r\n";
 /*
 foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
