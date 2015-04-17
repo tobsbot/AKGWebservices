@@ -71,6 +71,8 @@ if (count($arr) < 1) {
 	exit();
 }
 
+var_dump($arr);
+
 foreach($arr as $tr) {
 	$el = $tr ->find("td.ev_td_left text", 0) ->plaintext;
 
