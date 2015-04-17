@@ -84,7 +84,7 @@ foreach($weeks as $week) {
 
 	foreach ($arr as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
-		$date			= sqlDate($tr->find('td', 1)->plaintext);
+		$date			= substD($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
 		$type			= tidyUp($tr->find('td', 3) ->plaintext);
 		$lesson			= tidyUp($tr->find('td', 4) ->plaintext);

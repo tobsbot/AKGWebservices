@@ -19,10 +19,26 @@ function tidyUp($str) {
 	return utf8_encode(trim($ret));
 }
 
-function sqlDate($str) {
+function substD($str) {
 	$tmp = tidyUp($str)
 		. date("Y", strtotime("now"));
 
 	return date('Y-m-d', strtotime($tmp));
+}
+
+function eventD($str) {
+	return date_format(
+		date_create_from_format("d. F Y", tidyUp($str)),
+		'Y-m-d'
+	);
+}
+
+function event_exists($connection, $title, $eventDate) {
+	$query = mysqli_query(
+		$connection,
+		"SELECT * FROM Events WHERE title='".$title."', eventDate='".$eventDate."'"
+	);
+
+	return (mysqli_num_rows($query) > 0);
 }
 ?>
