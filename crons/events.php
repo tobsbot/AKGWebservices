@@ -72,7 +72,7 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$eventDate = eventD($tr ->find("td.ev_td_left", 0) ->plaintext);
+	$eventDate = tidyUp($tr ->find("td.ev_td_left", 0) ->plaintext);
 	print($eventDate."\r\n");
 
 	/*
