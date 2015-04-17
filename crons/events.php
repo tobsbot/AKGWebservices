@@ -71,8 +71,8 @@ if (count($arr) < 1) {
 	exit();
 }
 
-for($i = 0; $i < count($arr), $i++){
-	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 0) ->plaintext);)
+for($i = 0; $i < count($arr); $i++){
+	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 0) ->plaintext));
 }
 
 /*
