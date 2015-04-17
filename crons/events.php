@@ -38,6 +38,8 @@ if (!mysqli_query($conn, $database ->tables ->Events ->create)) {
 	exit();
 }
 
+mysqli_query("TRUNCATE Events");
+
 $insert = mysqli_prepare(
 	$conn,
 	$database ->tables ->Events ->insert
@@ -83,7 +85,7 @@ foreach($arr as $tr) {
 
 		// Load html of description page
 		$tmpHtml = str_get_html(
-			get_data($li ->find('a.ev_link_row', 0) ->href),
+			get_data("http://www.akg-bensheim.de" . ($li ->find('a.ev_link_row', 0) ->href)),
 			true, true, "ISO-8859-1"
 		);
 
