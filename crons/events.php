@@ -75,14 +75,13 @@ foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
 
 	if(!isset($el) || empty($el)) {
-		print('jump');
 		continue;
 	}
 
 	$eventDate = eventD($el);
-	print($eventDate."\r\n");
+	//print($eventDate."\r\n");
 
-	/*
+
 	// Iterate through all events this date
 	foreach($tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $li) {
 
@@ -119,7 +118,6 @@ foreach($arr as $tr) {
 			break 2;
 		}
 	}
-	*/
 }
 
 ##########################################################
