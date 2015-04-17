@@ -72,8 +72,8 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$dateEl = $tr ->find('td.ev_td_left text', 0);
-	$eventEl = $tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li', 0);
+	$dateEl = $tr ->find('.ev_td_left text', 0);
+	$eventEl = $tr ->find('.ev_td_li');
 
 	echo count($dateEl) . " date has " . count($eventEl) . " events.\r\n";
 }
