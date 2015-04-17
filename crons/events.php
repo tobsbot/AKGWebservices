@@ -72,7 +72,7 @@ if (count($arr) < 1) {
 }
 
 for($i = 0; $i < count($arr); $i++){
-	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 0) ->plaintext));
+	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 1) ->plaintext));
 }
 
 /*
