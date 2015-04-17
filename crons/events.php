@@ -71,6 +71,11 @@ if (count($arr) < 1) {
 	exit();
 }
 
+for($i = 0; $i < count($arr), $i++){
+	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 0) ->plaintext);)
+}
+
+/*
 foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
 
@@ -83,7 +88,6 @@ foreach($arr as $tr) {
 
 	// Iterate through all events this date
 	foreach($tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $li) {
-		print("sadfaf");
 		// Get the event title
 		$title = tidyUp($li ->find('a.ev_link_row', 0)  ->plaintext);
 
@@ -119,6 +123,7 @@ foreach($arr as $tr) {
 	}
 
 }
+*/
 
 ##########################################################
 print("Closing connection to database...\r\n");
