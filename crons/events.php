@@ -71,12 +71,11 @@ if (count($arr) < 1) {
 	exit();
 }
 
-print(count($arr));
-
 foreach($arr as $tr) {
 	$el = $tr ->find("td.ev_td_left text", 0) ->plaintext;
 
 	if(!isset($el) || empty($el)) {
+		print('jump');
 		continue;
 	}
 
