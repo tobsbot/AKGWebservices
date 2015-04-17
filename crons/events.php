@@ -71,10 +71,8 @@ if (count($arr) < 1) {
 	exit();
 }
 
-for($i = 0; $i < count($arr); $i++){
-	print(tidyUp($arr[$i] ->find("td.ev_td_left text", 1) ->plaintext));
-}
-
+foreach($arr as $tr)
+	echo $tr ->innertext;
 /*
 foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
