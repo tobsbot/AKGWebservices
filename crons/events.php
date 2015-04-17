@@ -71,8 +71,12 @@ if (count($arr) < 1) {
 	exit();
 }
 
-foreach($arr as $tr)
-	echo $tr ->innertext . "\r\n\r\n";
+foreach($arr as $tr) {
+	$dateEl = $tr ->find('td.ev_td_left text');
+	$eventEl = $tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li');
+
+	echo count($dateEl) . " date has " . count($eventEl) . " events.\r\n";
+}
 /*
 foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
