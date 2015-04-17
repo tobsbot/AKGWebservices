@@ -5,7 +5,7 @@ include('lib/simple_html_dom.php');
 header('Content-Type: text/plain; charset=utf-8');
 
 define("URL_EVENTS", "http://www.akg-bensheim.de/termine/range.listevents/-");
-define("SEL_EVENTS", "#jevents_body .ev_table tr");
+define("SEL_EVENTS", "#jevents_body table.ev_table tbody tr");
 
 
 ##########################################################
@@ -72,7 +72,13 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$eventDate = eventD($tr ->find("td.ev_td_left", 0) ->plaintext);
+	$el = $tr ->find("td.ev_td_left", 0) ->plaintext;
+
+	if(!isset($el) || empty($el)) {
+		continue;
+	}
+
+	$eventDate = eventD($el);
 	print($eventDate."\r\n");
 
 	/*
