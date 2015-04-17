@@ -73,7 +73,7 @@ if (count($arr) < 1) {
 
 foreach($arr as $tr) {
 	$eventDate = eventD($tr ->find("td.ev_td_left", 0) ->plaintext);
-	print($eventDate);
+	print($eventDate."\r\n");
 
 	/*
 	// Iterate through all events this date
