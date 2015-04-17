@@ -13,6 +13,7 @@ if (!$conn) {
 }
 
 if (!mysqli_select_db($conn, $database ->name)) {
+	mysqli_close($conn);
 	json_response(NULL, 500, "Selection of datasource failed!");
 }
 

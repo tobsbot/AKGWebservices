@@ -1,5 +1,7 @@
 <?php
+include('lib/utils.php');
 include('lib/simple_html_dom.php');
+
 header('Content-Type: text/plain; charset=utf-8');
 
 define("URL_SUBST", "http://www.akg-bensheim.de/akgweb2011/content/Vertretung/w/%02d/w00000.htm");
@@ -37,7 +39,7 @@ if (!mysqli_select_db($conn, $database ->name)) {
 }
 
 if (!mysqli_query($conn, $database ->tables ->Substitution ->create) ||
-	!mysqli_query($conn, $database ->tables ->Substitution ->prepare)) {
+	!mysqli_query($conn, $database ->tables ->Substitution ->clear)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
@@ -109,31 +111,4 @@ mysqli_close($conn);
 ##########################################################
 print("Cron job successfully finished!\r\n");
 ##########################################################
-
-function get_data($url) {
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_ENCODING, "ISO-8859-1");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-	$data = curl_exec($ch);
-	curl_close($ch);
-
-	return $data;
-}
-
-function tidyUp($str) {
-	$ret = strip_tags($str);
-    $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO8859-1");
-	$ret = str_replace("\xA0", '', $ret);
-
-	return utf8_encode(trim($ret));
-}
-
-function sqlDate($str) {
-	$tmp = tidyUp($str)
-		. date("Y", strtotime("now"));
-
-	return date('Y-m-d', strtotime($tmp));
-}
 ?>

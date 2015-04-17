@@ -9,22 +9,22 @@
 		"Substitution" : {
 			"create" : "CREATE TABLE IF NOT EXISTS Substitution (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', formKey varchar(10) NOT NULL DEFAULT '', dateSubst date NOT NULL, period varchar(7) NOT NULL DEFAULT '1', type varchar(50) NOT NULL DEFAULT 'Sonstige', lesson varchar(10) NOT NULL , lessonSubst varchar(10) NOT NULL DEFAULT '', room varchar(10) NOT NULL DEFAULT '', roomSubst varchar(10) NOT NULL DEFAULT '', annotation varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
 			"insert" : "INSERT INTO Substitution (formKey, dateSubst, period, type, lesson, lessonSubst, room, roomSubst, annotation ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-			"prepare" : "TRUNCATE Substitution"
+			"clear" : "TRUNCATE Substitution"
 		},
 		"Events" : {
-			"create" : "",
-			"insert" : "",
-			"prepare" : ""
+			"create" : "CREATE TABLE IF NOT EXISTS Events (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(10) NOT NULL DEFAULT '', eventDate date NOT NULL, description varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
+			"insert" : "INSERT INTO Events (title, eventDate, description) VALUES (?, ?, ?)",
+			"clear" : ""
 		},
 		"News" : {
 			"create" : "",
 			"insert" : "",
-			"prepare" : ""
+			"clear" : ""
 		},
 		"Teachers" : {
 			"create" : "",
 			"insert" : "",
-			"prepare" : ""
+			"clear" : ""
 		}
 	}
 }
