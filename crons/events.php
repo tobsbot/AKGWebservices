@@ -73,6 +73,7 @@ if (count($arr) < 1) {
 
 foreach($arr as $tr) {
 	$el = $tr ->find("td.ev_td_left", 0) ->plaintext;
+	print($el);
 
 	if(!isset($el) || empty($el)) {
 		continue;
