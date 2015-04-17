@@ -27,10 +27,21 @@ function substD($str) {
 }
 
 function eventD($str) {
-	return date_format(
-		date_create_from_format("d. F Y", tidyUp($str)),
-		'Y-m-d'
+	$months = array(
+		"Januar"	=> "January",
+		"Februar"	=> "February",
+		"März"		=> "March",
+		"April"		=> "April",
+		"Mai"		=> "May",
+		"Juni"		=> "June",
+		"August"	=> "August",
+		"September" => "September",
+		"Oktober" 	=> "October",
+		"November"	=> "November",
+		"Dezember"	=> "December"
 	);
+
+	return strftime("%Y-%m-%d", strtotime(strtr($str, $months)));
 }
 
 function event_exists($connection, $title, $eventDate) {
