@@ -33,7 +33,7 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
-if (!mysqli_query($conn, $database ->tables ->Events ->create) {
+if (!mysqli_query($conn, $database ->tables ->Events ->create)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
