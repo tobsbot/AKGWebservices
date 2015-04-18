@@ -66,6 +66,9 @@ if (empty($html)) {
 }
 
 foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
+	print($tr ->innertext . "\r\n");
+
+	/*
 	$dateEl = $tr ->find('td.ev_td_left text', 0);
 
 	if(!isset($dateEl) ||
@@ -104,7 +107,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		}
 		*/
 
-		print("Parsed: [$title, $eventDate]\r\n");
+		//print("Parsed: [$title, $eventDate]\r\n");
 
 		/*
 		if(!event_exists($conn, $title, $eventDate)) {
