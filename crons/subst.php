@@ -78,7 +78,7 @@ foreach($weeks as $week) {
 
 	foreach ($html ->find(SEL_SUBST) as $tr) {
 		$formKey		= utf8_encode(tidyUp(	$tr->find('td', 0) ->plaintext));
-		$date			= parseSubstDate(		$tr->find('td', 1) ->plaintext));
+		$date			= parseSubstDate(		$tr->find('td', 1) ->plaintext);
 		$period			= utf8_encode(tidyUp(	$tr->find('td', 2) ->plaintext));
 		$type			= utf8_encode(tidyUp(	$tr->find('td', 3) ->plaintext));
 		$lesson			= utf8_encode(tidyUp(	$tr->find('td', 4) ->plaintext));
