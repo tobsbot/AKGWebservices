@@ -39,7 +39,7 @@ function json_response($data, $code = 200, $msg = "OK") {
 		"code" => $code,
 		"message" => $msg,
 		"data" => $data
-	], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+	], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	exit();
 }
 ?>
