@@ -17,8 +17,8 @@
 			"clear" : ""
 		},
 		"News" : {
-			"create" : "",
-			"insert" : "",
+			"create" : "CREATE TABLE IF NOT EXISTS News (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(350) NOT NULL DEFAULT '', article varchar(8000) NOT NULL DEFAULT '', imageUrl varchar(350) NOT NULL DEFAULT '', imageDesc varchar(350) NOT NULL DEFAULT '', PRIMARY KEY(_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf-8",
+			"insert" : "INSERT INTO News (title, article, imageUrl, imageDesc) VALUES (?, ?, ?, ?)",
 			"clear" : ""
 		},
 		"Teachers" : {
