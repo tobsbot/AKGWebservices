@@ -29,4 +29,49 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
+if (!mysqli_query($conn, $database ->tables ->Teachers ->create) ||
+	!mysqli_query($conn, $database ->tables ->Teachers ->clear)) {
+	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
+	exit();
+}
+
+$insert = mysqli_prepare(
+	$conn,
+	$database ->tables ->Teachers ->insert
+);
+
+mysqli_stmt_bind_param(
+	$insert,
+	'sssss',
+	$firstName,
+	$lastName,
+	$subjects,
+	$shorthand,
+	$email
+);
+
+$json = json_decode(get_data('http://www.akgbensheim.de/support/teachers.json')) ->teachers;
+foreach($json as $teacher) {
+	$firstName = $teacher['firstname'];
+	$lastName = $teacher['lastname'];
+	$subjects = $teacher['subjects'];
+	$shorthand = $teacher['shortname'];
+	$email = $teacher['email'];
+
+	mysqli_stmt_execute($insert);
+	printf(
+		"%d row inserted: [$firstName, $lastName, $subjects, $shorthand, $email]\r\n",
+		mysqli_stmt_affected_rows($insert)
+	);
+}
+##########################################################
+print("\r\nClosing connection to database...\r\n");
+##########################################################
+
+mysqli_stmt_close($insert);
+mysqli_close($conn);
+
+##########################################################
+print("Cron job successfully finished!\r\n");
+##########################################################
 ?>
