@@ -120,7 +120,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 			break 2;
 		}
 		*/
-	}
+	//}
 
 }
 
