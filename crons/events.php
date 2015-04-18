@@ -79,7 +79,7 @@ foreach($html ->find(SEL_EVENTS) as $tr) {
 	foreach($tr ->find('li.ev_td_li') as $li) {
 
 		// Get the event title
-		$title = ($li ->find('a.ev_link_row', 0))  ->plaintext;
+		$title = $li ->find('a.ev_link_row', 0) ->plaintext;
 
 		// Set the dateString
 		//$dateString = tidyUp($li ->find('text', 0) ->plaintext);
