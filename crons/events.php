@@ -73,7 +73,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 
 	foreach($tr ->find('li.ev_td_li') as $li) {
 		$title = $li ->find('a.ev_link_row', 0) ->plaintext;
-		print("Parsed: [$title, $date]");
+		print("Parsed: [$title, $date]\n");
 	}
 }
 	/*
