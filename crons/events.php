@@ -47,9 +47,10 @@ $insert = mysqli_prepare(
 
 mysqli_stmt_bind_param(
 	$insert,
-	'sss',
+	'ssss',
 	$title,
 	$eventDate,
+	$dateString,
 	$description
 );
 
@@ -72,8 +73,6 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	//$tr = str_get_html($tr ->innertext);
-
 	$el = $tr ->find("td.ev_td_left text", 0);
 	if(!isset($el) ||
 		empty($el ->plaintext)) {
@@ -81,15 +80,14 @@ foreach($arr as $tr) {
 	}
 
 	$eventDate = eventD($el ->plaintext);
-	//print($eventDate."\r\n");
 
 	// Iterate through all events this date
 	foreach($tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $li) {
 		// Get the event title
 		$title = tidyUp($li ->find('a.ev_link_row', 0)  ->plaintext);
 
-		// Start the event description with a date string
-		$description = tidyUp($li ->find('text', 0) ->plaintext) . ": ";
+		// Set the dateString
+		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
 
 		// Load html of description page
 		$tmpHtml = str_get_html(
@@ -97,7 +95,8 @@ foreach($arr as $tr) {
 			true, true, "ISO-8859-1"
 		);
 
-		// Check description page
+		// Parse description
+		$description = "";
 		if(!empty($tmpHtml)) {
 
 			// Iterate through all layout rows that make up the description
@@ -108,6 +107,9 @@ foreach($arr as $tr) {
 	    	}
 		}
 
+		print("Parsed: [$title, $eventDate, $dateString, $description]");
+
+		/*
 		if(!event_exists($conn, $title, $eventDate)) {
 			mysqli_stmt_execute($insert);
 			printf(
@@ -117,6 +119,7 @@ foreach($arr as $tr) {
 		} else {
 			break 2;
 		}
+		*/
 	}
 
 }
