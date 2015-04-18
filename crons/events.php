@@ -82,7 +82,8 @@ foreach($arr as $tr) {
 	$eventDate = eventD($el ->plaintext);
 
 	// Iterate through all events this date
-	foreach($tr ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $li) {
+	foreach($tr ->find('li.ev_td_li') as $li) {
+
 		// Get the event title
 		$title = tidyUp($li ->find('a.ev_link_row', 0)  ->plaintext);
 
@@ -107,7 +108,7 @@ foreach($arr as $tr) {
 	    	}
 		}
 
-		print("Parsed: [$title, $eventDate, $dateString, $description]");
+		print("Parsed: [$title, $eventDate, $dateString, $description]\r\n");
 
 		/*
 		if(!event_exists($conn, $title, $eventDate)) {
