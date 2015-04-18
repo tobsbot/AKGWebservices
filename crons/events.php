@@ -5,7 +5,7 @@ include('lib/simple_html_dom.php');
 header('Content-Type: text/plain; charset=utf-8');
 
 define("URL_EVENTS", "http://www.akg-bensheim.de/termine/range.listevents/-");
-define("SEL_EVENTS", "#jevents_body table.ev_table tbody tr[!valign]");
+define("SEL_EVENTS", "#jevents_body table.ev_table tbody tr");
 
 
 ##########################################################
