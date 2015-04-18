@@ -90,7 +90,7 @@ foreach($arr as $tr) {
 		// Set the dateString
 		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
 
-		// Load html of description page
+		/* Load html of description page
 		$tmpHtml = str_get_html(
 			get_data("http://www.akg-bensheim.de" . ($li ->find('a.ev_link_row', 0) ->href)),
 			true, true, "ISO-8859-1"
@@ -107,8 +107,9 @@ foreach($arr as $tr) {
 				$description .= tidyUp($tr_temp ->plaintext);
 	    	}
 		}
+		*/
 
-		print("Parsed: [$title, $eventDate, $dateString, $description]\r\n");
+		print("Parsed: [$title, $eventDate, $dateString, ]\r\n");
 
 		/*
 		if(!event_exists($conn, $title, $eventDate)) {
