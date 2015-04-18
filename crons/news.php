@@ -73,7 +73,7 @@ do {
 	print("$end\r\n");
 
 	$start += 4;
-} while ($start < $end);
+} while ($start <= $end);
 
 ##########################################################
 print("\r\nClosing connection to database...\r\n");
