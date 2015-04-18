@@ -72,6 +72,7 @@ foreach($html ->find(SEL_EVENTS) as $tr) {
 		empty($el ->plaintext)) {
 		continue;
 	}
+	print("fuck");
 
 	$eventDate = eventD($el ->plaintext);
 
