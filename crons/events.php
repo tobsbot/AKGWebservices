@@ -82,6 +82,8 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	    	}
 		}
 
+		print(event_exists($conn, $title, $eventDate));
+
 		if(!event_exists($conn, $title, $eventDate)) {
 			mysqli_stmt_execute($insert);
 			printf(
