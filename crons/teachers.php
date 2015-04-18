@@ -45,8 +45,8 @@ mysqli_stmt_bind_param(
 	'sssss',
 	$firstName,
 	$lastName,
-	$subjects,
 	$shorthand,
+	$subjects,
 	$email
 );
 
@@ -54,13 +54,13 @@ $json = json_decode(get_data('http://www.akgbensheim.de/support/teachers.json'))
 foreach($json as $teacher) {
 	$firstName = $teacher ->firstname;
 	$lastName = $teacher ->lastname;
-	$subjects = $teacher ->subjects;
 	$shorthand = $teacher ->shortname;
+	$subjects = $teacher ->subjects;
 	$email = $teacher ->email;
 
 	mysqli_stmt_execute($insert);
 	printf(
-		"%d row inserted: [$firstName, $lastName, $subjects, $shorthand, $email]\r\n",
+		"%d row inserted: [$firstName, $lastName, $shorthand, $subjects, $email]\r\n",
 		mysqli_stmt_affected_rows($insert)
 	);
 }
