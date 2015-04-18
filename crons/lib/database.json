@@ -17,12 +17,12 @@
 			"clear" : ""
 		},
 		"News" : {
-			"create" : "CREATE TABLE IF NOT EXISTS News (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(350) NOT NULL DEFAULT '', article varchar(8000) NOT NULL DEFAULT '', imageUrl varchar(350) NOT NULL DEFAULT '', imageDesc varchar(350) NOT NULL DEFAULT '', PRIMARY KEY(_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf-8",
+			"create" : "CREATE TABLE IF NOT EXISTS News (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(350) NOT NULL DEFAULT '', article varchar(8000) NOT NULL DEFAULT '', imageUrl varchar(350) NOT NULL DEFAULT '', imageDesc varchar(350) NOT NULL DEFAULT '', PRIMARY KEY(_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
 			"insert" : "INSERT INTO News (title, article, imageUrl, imageDesc) VALUES (?, ?, ?, ?)",
 			"clear" : ""
 		},
 		"Teachers" : {
-			"create" : "CREATE TABLE IF NOT EXISTS Teachers (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', firstName varchar(50) NOT NULL DEFAULT '', lastName varchar(50) NOT NULL DEFAULT '', shorthand varchar(5) NOT NULL DEFAULT '', subjects varchar(50) NOT NULL DEFAULT '', email varchar(100) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf-8",
+			"create" : "CREATE TABLE IF NOT EXISTS Teachers (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', firstName varchar(50) NOT NULL DEFAULT '', lastName varchar(50) NOT NULL DEFAULT '', shorthand varchar(5) NOT NULL DEFAULT '', subjects varchar(50) NOT NULL DEFAULT '', email varchar(100) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
 			"insert" : "INSERT INTO Teachers (firstName, lastName, shorthand, subjects, email) VALUES (?, ?, ?, ?, ?)",
 			"clear" : "TRUNCATE Teachers"
 		}
