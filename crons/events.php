@@ -57,8 +57,7 @@ mysqli_stmt_bind_param(
 print("\r\nParsing \"" . URL_EVENTS . "\" ...\r\n");
 
 $html = str_get_html(
-	get_data(URL_EVENTS),
-	true, true, "ISO-8859-1"
+	get_data(URL_EVENTS)
 );
 
 if (empty($html)) {
@@ -75,7 +74,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	}
 
 	$eventDate = parseEventDate($dateEl ->plaintext);
-	print($eventDate);
+	print($eventDate. " ");
 
 	// Iterate through all events this date
 	foreach($tr ->find('li.ev_td_li') as $li) {
