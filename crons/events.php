@@ -66,14 +66,8 @@ if (empty($html)) {
 	exit();
 }
 
-$arr = $html ->find(SEL_EVENTS);
-if (count($arr) < 1) {
-	print("No entries on this resource!\r\n");
-	exit();
-}
-
-foreach($arr as $tr) {
-	$el = $tr ->find("td.ev_td_left text", 0);
+foreach($html ->find(SEL_EVENTS) as $tr) {
+	$dateEl = $tr ->find('td.ev_td_left text', 0);
 	if(!isset($el) ||
 		empty($el ->plaintext)) {
 		continue;
@@ -85,10 +79,10 @@ foreach($arr as $tr) {
 	foreach($tr ->find('li.ev_td_li') as $li) {
 
 		// Get the event title
-		$title = tidyUp($li ->find('a.ev_link_row', 0)  ->plaintext);
+		$title = ($li ->find('a.ev_link_row', 0))  ->plaintext;
 
 		// Set the dateString
-		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
+		//$dateString = tidyUp($li ->find('text', 0) ->plaintext);
 
 		/* Load html of description page
 		$tmpHtml = str_get_html(
@@ -109,7 +103,7 @@ foreach($arr as $tr) {
 		}
 		*/
 
-		print("Parsed: [$title, $eventDate, $dateString, ]\r\n");
+		print("Parsed: [$title, $eventDate]\r\n");
 
 		/*
 		if(!event_exists($conn, $title, $eventDate)) {

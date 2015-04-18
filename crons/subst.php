@@ -76,13 +76,7 @@ foreach($weeks as $week) {
 		continue;
 	}
 
-	$arr = $html ->find(SEL_SUBST);
-	if (count($arr) < 1) {
-		print("No entries on this resource!\r\n");
-		continue;
-	}
-
-	foreach ($arr as $tr) {
+	foreach ($html ->find(SEL_SUBST) as $tr) {
 		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
 		$date			= substD($tr->find('td', 1)->plaintext);
 		$period			= tidyUp($tr->find('td', 2) ->plaintext);
