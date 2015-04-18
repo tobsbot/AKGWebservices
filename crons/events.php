@@ -66,15 +66,12 @@ if (empty($html)) {
 }
 
 foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
-	$fickdichduarschgewichstesphpmisthurensohnscheisse = trim($tr ->plaintext);
-	if(empty($fickdichduarschgewichstesphpmisthurensohnscheisse)) {
+	$tmp = trim($tr ->plaintext);
+	if(empty($tmp)) {
 		continue;
 	}
 
 	$date = parseEventDate($tr ->find('td.ev_td_left text', 0) ->plaintext);
-	if(!isset($date) || empty($date)) {
-		continue;
-	}
 
 	$i = 0;
 	foreach($tr ->find('li.ev_td_li') as $li) {
