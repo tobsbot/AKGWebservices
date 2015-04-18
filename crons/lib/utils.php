@@ -50,6 +50,9 @@ function event_exists($connection, $title, $eventDate) {
 		"SELECT * FROM Events WHERE title='$title' AND eventDate='$eventDate'"
 	);
 
-	return (mysqli_num_rows($query) > 0);
+	if(mysqli_num_rows($query) > 0)
+		return true;
+	else
+		return false;
 }
 ?>
