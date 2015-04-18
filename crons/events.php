@@ -66,8 +66,16 @@ if (empty($html)) {
 }
 
 foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
-	print($tr ->innertext . "\r\n");
+	$date = parseEventDate($tr ->find('td.ev_td_left text', 0) ->plaintext);
+	if(!isset($date)) {
+		continue;
+	}
 
+	foreach($tr ->find('li.ev_td_li') as $li) {
+		$title = $li ->find('a.ev_link_row', 0) ->plaintext;
+		print("Parsed: [$title, $date]");
+	}
+}
 	/*
 	$dateEl = $tr ->find('td.ev_td_left text', 0);
 
