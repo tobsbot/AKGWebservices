@@ -96,7 +96,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 }
 
 ##########################################################
-print("Closing connection to database...\r\n");
+print("\r\nClosing connection to database...\r\n");
 ##########################################################
 
 mysqli_stmt_close($insert);

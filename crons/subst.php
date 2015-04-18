@@ -96,7 +96,7 @@ foreach($weeks as $week) {
 }
 
 ##########################################################
-print("Closing connection to database...\r\n");
+print("\r\nClosing connection to database...\r\n");
 ##########################################################
 
 mysqli_stmt_close($insert);
