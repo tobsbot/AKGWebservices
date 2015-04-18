@@ -22,9 +22,9 @@
 			"clear" : ""
 		},
 		"Teachers" : {
-			"create" : "",
-			"insert" : "",
-			"clear" : ""
+			"create" : "CREATE TABLE IF NOT EXISTS Teachers (_id in(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', name varchar(20) NOT NULL DEFAULT '', subjects varchar(50) NOT NULL DEFAULT '', email varchar(100), NOT NULL DEFAULT '', PRIMARY KEY(_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
+			"insert" : "INSERT INTO Teachers (name, subjects, email) VALUES (?, ?, ?, ?)",
+			"clear" : "TRUNCATE Teachers"
 		}
 	}
 }
