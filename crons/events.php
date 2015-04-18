@@ -68,14 +68,14 @@ if (empty($html)) {
 
 foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	$dateEl = $tr ->find('td.ev_td_left text', 0);
-	print($dateEl ->plaintext);
+
 
 	if(!isset($el) ||
 		empty($el ->plaintext)) {
 		continue;
 	}
 
-
+	print($dateEl ->plaintext);
 	$eventDate = parseEventDate($el ->plaintext);
 
 	// Iterate through all events this date
