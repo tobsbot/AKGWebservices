@@ -84,7 +84,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 
 		print(event_exists($conn, $title, $eventDate));
 
-		if(!event_exists($conn, $title, $eventDate)) {
+		if(event_exists($conn, $title, $eventDate) == false) {
 			mysqli_stmt_execute($insert);
 			printf(
 				"%d row inserted: [$title, $eventDate, $dateString, $description]\r\n",
