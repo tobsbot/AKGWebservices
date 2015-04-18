@@ -72,7 +72,8 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$dateEl = $tr ->find('td.ev_td_left', 0);
+	$htmldf = str_get_html($tr->innertext);
+	$dateEl = $htmldf ->find('td.ev_td_left', 0);
 	print($dateEl."\r\n");
 
 	/*
@@ -82,6 +83,7 @@ foreach($arr as $tr) {
 	echo count($dateEl) . " date has " . count($eventEl) . " events.\r\n";
 	*/
 }
+
 /*
 foreach($arr as $tr) {
 	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
