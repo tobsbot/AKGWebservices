@@ -72,8 +72,8 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$dateEl = $tr ->find('td.ev_td_left text', 0);
-	print($dateEl);
+	$dateEl = $tr ->find('td.ev_td_left', 0);
+	print($dateEl."\r\n");
 
 	/*
 	$dateEl = $tr ->find('.ev_td_left text', 0);
