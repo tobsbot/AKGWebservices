@@ -71,9 +71,9 @@ if (count($arr) < 1) {
 	exit();
 }
 
-print("-----");
 foreach($arr as $tr) {
-	echo $tr ->plaintext . "\n\n";
+	$dateEl = $tr ->find('td.ev_td_left text', 0);
+	print($dateEl);
 
 	/*
 	$dateEl = $tr ->find('.ev_td_left text', 0);

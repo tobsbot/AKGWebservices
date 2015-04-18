@@ -12,8 +12,8 @@
 			"clear" : "TRUNCATE Substitution"
 		},
 		"Events" : {
-			"create" : "CREATE TABLE IF NOT EXISTS Events (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(10) NOT NULL DEFAULT '', eventDate date NOT NULL, description varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
-			"insert" : "INSERT INTO Events (title, eventDate, description) VALUES (?, ?, ?)",
+			"create" : "CREATE TABLE IF NOT EXISTS Events (_id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', title varchar(10) NOT NULL DEFAULT '', eventDate date NOT NULL, dateString varchar(350) NOT NULL DEFAULT '', description varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (_id)) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8",
+			"insert" : "INSERT INTO Events (title, eventDate, dateString, description) VALUES (?, ?, ?, ?)",
 			"clear" : ""
 		},
 		"News" : {
