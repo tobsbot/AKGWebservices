@@ -38,8 +38,6 @@ if (!mysqli_query($conn, $database ->tables ->Events ->create)) {
 	exit();
 }
 
-mysqli_query("TRUNCATE Events");
-
 $insert = mysqli_prepare(
 	$conn,
 	$database ->tables ->Events ->insert
