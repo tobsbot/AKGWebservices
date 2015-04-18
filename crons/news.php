@@ -68,7 +68,9 @@ do {
 
 	preg_match('/^\/\?\w+=(\d+)$/',
 		$html ->find('li.pagination-end a.pagenav', 0) ->href, $matches);
-	$end = $matches[1];
+	if(isset($matches[1]) && !empty($matches[1])) {
+		$end = $matches[1];
+	}
 
 	print("$end\r\n");
 
