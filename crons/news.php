@@ -72,8 +72,6 @@ do {
 		$end = $matches[1];
 	}
 
-	print("$end\r\n");
-
 	$start += 4;
 } while ($start <= $end);
 
