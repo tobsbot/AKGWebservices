@@ -52,11 +52,11 @@ mysqli_stmt_bind_param(
 
 $json = json_decode(get_data('http://www.akgbensheim.de/support/teachers.json')) ->teachers;
 foreach($json as $teacher) {
-	$firstName = $teacher['firstname'];
-	$lastName = $teacher['lastname'];
-	$subjects = $teacher['subjects'];
-	$shorthand = $teacher['shortname'];
-	$email = $teacher['email'];
+	$firstName = $teacher ->firstname;
+	$lastName = $teacher ->lastname;
+	$subjects = $teacher ->subjects;
+	$shorthand = $teacher ->shortname;
+	$email = $teacher ->email;
 
 	mysqli_stmt_execute($insert);
 	printf(
