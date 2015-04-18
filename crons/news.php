@@ -66,8 +66,8 @@ do {
 		continue;
 	}
 
-	$tmp = $html ->find('li.pagination-end a.pagenav', 0) ->href;
-	print($tmp . "\r\n");
+	$tmp = preg_match('/^\/\?\w+=(\d+)$/', $html ->find('li.pagination-end a.pagenav', 0) ->href, $matches);
+	print($matches[1] . "\r\n");
 
 	$start += 4;
 } while ($start < $end);
