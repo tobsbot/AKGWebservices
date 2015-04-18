@@ -75,17 +75,17 @@ do {
 	}
 
 	foreach($html ->find('#content_startseite div.blog-featured div.items-row') as $news) {
-		$titleEl = $html ->find('h2.item-title a', 0);
+		$titleEl = $news ->find('h2.item-title a', 0);
 		$title = tidyUp($titleEl ->plaintext);
 
 		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href));
 
 		$article = "";
-		if(!empty($htmlDetail)) {
-			$imageUrl = 'http://www.akg-bensheim.de' . $html ->find('div.item-page img', 0) ->src;
-			$imageDesc = tidyUp($html ->find('div.item-page p.img_caption text', 0) ->plaintext);
+		if(!empty($tmpHtml)) {
+			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('div.item-page img', 0) ->src;
+			$imageDesc = tidyUp($tmpHtml ->find('div.item-page p.img_caption text', 0) ->plaintext);
 
-			foreach($htmlDetail ->find('div.item-page p text') as $p_tmp) {
+			foreach($tmpHtml ->find('div.item-page p text') as $p_tmp) {
 				$article .= tidyUp($p_tmp ->plaintext);
 	    	}
 		}
