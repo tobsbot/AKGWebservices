@@ -79,7 +79,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		$title = tidyUp($a ->plaintext);
 		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
 
-		print("Parsed: [$title, $date, $dateString]");
+		print("Parsed: [$title, $date, $dateString]\n");
 	}
 }
 	/*
