@@ -26,7 +26,7 @@ function substD($str) {
 	return date('Y-m-d', strtotime($tmp));
 }
 
-function eventD($str) {
+function parseEventDate($str) {
 	$months = array(
 		"Januar"	=> "January",
 		"Februar"	=> "February",
