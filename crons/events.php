@@ -72,8 +72,13 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$htmldf = str_get_html($tr->innertext);
+	$htmldf = str_get_html($tr ->innertext);
 	$dateEl = $htmldf ->find('td.ev_td_left', 0);
+
+	if(!isset($htmldf) || !isset($dateEl)) {
+		print("jimp");
+		continue;
+	}
 	print($dateEl."\r\n");
 
 	/*
