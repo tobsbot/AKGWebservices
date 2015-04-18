@@ -72,14 +72,15 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	}
 
 	$date = parseEventDate($tr ->find('td.ev_td_left text', 0) ->plaintext);
-
-	$i = 0;
 	foreach($tr ->find('li.ev_td_li') as $li) {
-		$title = $li ->find('a.ev_link_row', 0) ->plaintext;
-		//print("Parsed: [$title, $date]\n");
-		$i++;
+		$a = $li ->find('a.ev_link_row', 0);
+		$url = $a ->href;
+
+		$title = tidyUp($a ->plaintext);
+		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
+
+		print("Parsed: [$title, $date, $dateString]");
 	}
-	print("$i events this date\n");
 }
 	/*
 	$dateEl = $tr ->find('td.ev_td_left text', 0);
