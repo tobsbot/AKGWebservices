@@ -47,7 +47,7 @@ function parseEventDate($str) {
 function event_exists($connection, $title, $eventDate) {
 	$query = mysqli_query(
 		$connection,
-		"SELECT * FROM Events WHERE title='".$title."', eventDate='".$eventDate."'"
+		"SELECT * FROM Events WHERE title='$title' AND eventDate='$eventDate'";
 	);
 
 	return (mysqli_num_rows($query) > 0);

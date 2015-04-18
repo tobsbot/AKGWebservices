@@ -81,72 +81,22 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		$htmlDetail = str_get_html(get_data("http://www.akg-bensheim.de" . $a ->href));
 		$description = "";
 		if(!empty($htmlDetail)) {
-
-			// Iterate through all layout rows that make up the description
 			foreach($htmlDetail ->find('#jevents_body table.contentpaneopen tr[!class]') as $tr_temp) {
-
-				// Add the description to the description string
 				$description .= tidyUp($tr_temp ->plaintext);
 	    	}
 		}
-		print("Parsed: [$title, $eventDate, $dateString, $description]\n");
-	}
-}
-	/*
-	$dateEl = $tr ->find('td.ev_td_left text', 0);
 
-	if(!isset($dateEl) ||
-		empty($dateEl ->plaintext)) {
-		continue;
-	}
-
-	$eventDate = parseEventDate($dateEl ->plaintext);
-	print($eventDate. " ");
-
-	// Iterate through all events this date
-	foreach($tr ->find('li.ev_td_li') as $li) {
-
-		// Get the event title
-		$title = $li ->find('a.ev_link_row', 0) ->plaintext;
-
-		// Set the dateString
-		//$dateString = tidyUp($li ->find('text', 0) ->plaintext);
-
-		/* Load html of description page
-		$tmpHtml = str_get_html(
-			get_data("http://www.akg-bensheim.de" . ($li ->find('a.ev_link_row', 0) ->href)),
-			true, true, "ISO-8859-1"
-		);
-
-		// Parse description
-		$description = "";
-		if(!empty($tmpHtml)) {
-
-			// Iterate through all layout rows that make up the description
-			foreach($tmpHtml ->find('#jevents_body table.contentpaneopen tr[!class]') as $tr_temp) {
-
-				// Add the description to the description string
-				$description .= tidyUp($tr_temp ->plaintext);
-	    	}
-		}
-		*/
-
-		//print("Parsed: [$title, $eventDate]\r\n");
-
-		/*
 		if(!event_exists($conn, $title, $eventDate)) {
 			mysqli_stmt_execute($insert);
 			printf(
-				"%d row inserted: [$title, $eventDate, $description]\r\n",
+				"%d row inserted: [$title, $eventDate, $dateString, $description]\r\n",
 				mysqli_stmt_affected_rows($insert)
 			);
 		} else {
 			break 2;
 		}
-		*/
-	//}
-
-//}
+	}
+}
 
 ##########################################################
 print("Closing connection to database...\r\n");
