@@ -89,7 +89,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 				mysqli_stmt_affected_rows($insert)
 			);
 		} else {
-			print("\r\n-> events already stored in database.\r\n");
+			print("-> events already stored in database.\r\n");
 			break 2;
 		}
 	}
