@@ -130,7 +130,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		*/
 	//}
 
-}
+//}
 
 ##########################################################
 print("Closing connection to database...\r\n");
