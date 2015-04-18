@@ -75,7 +75,7 @@ foreach($arr as $tr) {
 	$rowHtml = str_get_html($tr ->innertext);
 
 	$dateEl = $rowHtml ->find('td.ev_td_left', 0);
-	$eventEl = $rowHtml ->find('td.ev_td_right li.ev_td_li');
+	$eventEl = $rowHtml ->find('li.ev_td_li');
 
 	if( !isset($htmldf) ||
 		!isset($dateEl) ||
