@@ -68,8 +68,38 @@ do {
 
 	preg_match('/^\/\?\w+=(\d+)$/',
 		$html ->find('li.pagination-end a.pagenav', 0) ->href, $matches);
-	if(isset($matches[1]) && !empty($matches[1])) {
+
+	if( isset($matches[1]) &&
+		!empty($matches[1]) ) {
 		$end = $matches[1];
+	}
+
+	foreach($html ->find('#content_startseite div.blog-featured div.items-row') as $news) {
+		$titleEl = $html ->find('h2.item-title a', 0);
+		$title = tidyUp($titleEl ->plaintext);
+
+		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href));
+
+		$article = "";
+		if(!empty($htmlDetail)) {
+			$imageUrl = 'http://www.akg-bensheim.de' . $html ->find('div.item-page img', 0) ->src;
+			$imageDesc = tidyUp($html ->find('div.item-page p.img_caption text', 0) ->plaintext);
+
+			foreach($htmlDetail ->find('div.item-page p text') as $p_tmp) {
+				$article .= tidyUp($p_tmp ->plaintext);
+	    	}
+		}
+
+		if(news_exists($conn, $title, $imageUrl) == false) {
+			mysqli_stmt_execute($insert);
+			printf(
+				"Parsed: [$title, $article, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
+				mysqli_stmt_affected_rows($insert)
+			);
+		} else {
+			print("-> events already stored in database.\r\n");
+			break 2;
+		}
 	}
 
 	$start += 4;

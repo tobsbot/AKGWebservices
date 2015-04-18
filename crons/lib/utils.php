@@ -55,4 +55,16 @@ function event_exists($connection, $title, $eventDate) {
 	else
 		return false;
 }
+
+function news_exists($connection, $title, $imageUrl) {
+	$query = mysqli_query(
+		$connection,
+		"SELECT * FROM News WHERE title='$title' AND imageUrl='$imageUrl'"
+	);
+
+	if(mysqli_num_rows($query) > 0)
+		return true;
+	else
+		return false;
+}
 ?>
