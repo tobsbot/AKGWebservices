@@ -82,15 +82,16 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	    	}
 		}
 
-		print(event_exists($conn, $title, $eventDate));
+		print("Parsed: [$title, $eventDate, $dateString, $description]");
 
 		if(event_exists($conn, $title, $eventDate) == false) {
 			mysqli_stmt_execute($insert);
 			printf(
-				"%d row inserted: [$title, $eventDate, $dateString, $description]\r\n",
+				" -> inserted into %d row of the database.\r\n ",
 				mysqli_stmt_affected_rows($insert)
 			);
 		} else {
+			print(" -> already stored in database.\r\n");
 			break 2;
 		}
 	}
