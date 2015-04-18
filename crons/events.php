@@ -71,6 +71,7 @@ if (count($arr) < 1) {
 	exit();
 }
 
+print("-----");
 foreach($arr as $tr) {
 	echo $tr ->plaintext . "\n\n";
 
