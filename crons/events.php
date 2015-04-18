@@ -72,13 +72,14 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$el = tidyUp($tr ->find("td.ev_td_left text", 0) ->plaintext);
+	$tr = str_get_html($tr ->innertext);
 
-	if(!isset($el) || empty($el)) {
+	$el = $tr ->find("td.ev_td_left text", 0);
+	if(!isset($el) || empty($el ->plaintext)) {
 		continue;
 	}
 
-	$eventDate = eventD($el);
+	$eventDate = eventD($el ->plaintext);
 	//print($eventDate."\r\n");
 
 	// Iterate through all events this date
