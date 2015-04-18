@@ -57,8 +57,7 @@ mysqli_stmt_bind_param(
 print("\r\nParsing \"" . URL_EVENTS . "\" ...\r\n");
 
 $html = str_get_html(
-	get_data(URL_EVENTS),
-	true, true, "ISO-8859-1"
+	get_data(URL_EVENTS)
 );
 
 if (empty($html)) {
