@@ -71,7 +71,8 @@ if (count($arr) < 1) {
 	exit();
 }
 
-foreach($arr as $tr = str_get_html($tr ->innertext)) {
+foreach($arr as $tr) {
+	//$tr = str_get_html($tr ->innertext);
 
 	$el = $tr ->find("td.ev_td_left text", 0);
 	if(!isset($el) ||
