@@ -67,8 +67,9 @@ if (empty($html)) {
 }
 
 foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
-	print("fuck");
 	$dateEl = $tr ->find('td.ev_td_left text', 0);
+	print($dateEl ->plaintext);
+
 	if(!isset($el) ||
 		empty($el ->plaintext)) {
 		continue;
