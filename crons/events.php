@@ -72,14 +72,25 @@ if (count($arr) < 1) {
 }
 
 foreach($arr as $tr) {
-	$htmldf = str_get_html($tr ->innertext);
-	$dateEl = $htmldf ->find('td.ev_td_left', 0);
+	$rowHtml = str_get_html($tr ->innertext);
 
-	if(!isset($htmldf) || !isset($dateEl)) {
-		print("jimp");
+	$dateEl = $rowHtml ->find('td.ev_td_left', 0);
+	$eventEl = $rowHtml ->find('td.ev_td_right li.ev_td_li');
+
+	if( !isset($htmldf) ||
+		!isset($dateEl) ||
+		!isset($eventEl)||
+		(count($eventEl) < 1)
+	){
 		continue;
 	}
-	print($dateEl."\r\n");
+
+	foreach($eventEl as $event) {
+		$title = tidyUp($event ->find('a.ev_link_row', 0)  ->plaintext);
+		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
+
+		print("Element [$title, $dateString]");
+	}
 
 	/*
 	$dateEl = $tr ->find('.ev_td_left text', 0);
