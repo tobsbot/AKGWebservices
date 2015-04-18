@@ -83,7 +83,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 				$description .= tidyUp($tr_temp ->plaintext);
 	    	}
 		}
-
+/*
 		if(!event_exists($conn, $title, $eventDate)) {
 			mysqli_stmt_execute($insert);
 			printf(
@@ -93,6 +93,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		} else {
 			break 2;
 		}
+		*/
 	}
 }
 
