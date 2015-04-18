@@ -1,12 +1,9 @@
 <?php
-
 include('lib/utils.php');
 include('lib/simple_html_dom.php');
 
 header('Content-Type: text/plain; charset=utf-8');
-
-define("URL_EVENTS", "http://www.akg-bensheim.de/termine/range.listevents/-");
-define("SEL_EVENTS", "#jevents_body table.ev_table tbody tr");
+define("URL", "http://www.akg-bensheim.de/termine/range.listevents/-");
 
 
 ##########################################################
@@ -53,10 +50,10 @@ mysqli_stmt_bind_param(
 	$description
 );
 
-print("\r\nParsing \"" . URL_EVENTS . "\" ...\r\n");
+print("\r\nParsing \"" . URL . "\" ...\r\n");
 
 $html = str_get_html(
-	get_data(URL_EVENTS)
+	get_data(URL)
 );
 
 if (empty($html)) {
