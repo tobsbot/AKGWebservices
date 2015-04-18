@@ -70,7 +70,7 @@ do {
 		$html ->find('li.pagination-end a.pagenav', 0) ->href, $matches);
 	$end = $matches[1];
 
-	print("$end\r\n")
+	print("$end\r\n");
 
 	$start += 4;
 } while ($start < $end);
