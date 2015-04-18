@@ -75,7 +75,6 @@ foreach($arr as $tr) {
 	$rowHtml = str_get_html($tr ->innertext);
 
 	$dateEl = $rowHtml ->find('td.ev_td_left', 0);
-	$eventEl = $rowHtml ->find('li.ev_td_li');
 
 	if( !isset($htmldf) ||
 		!isset($dateEl) ||
@@ -85,9 +84,9 @@ foreach($arr as $tr) {
 		continue;
 	}
 
-	foreach($eventEl as $event) {
+	foreach($rowHtml ->find('td.ev_td_right ul.ev_ul li.ev_td_li') as $event) {
 		$title = tidyUp($event ->find('a.ev_link_row', 0)  ->plaintext);
-		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
+		$dateString = tidyUp($event ->find('text', 0) ->plaintext);
 
 		print("Element [$title, $dateString]");
 	}
