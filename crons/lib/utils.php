@@ -16,10 +16,10 @@ function tidyUp($str) {
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO8859-1");
 	$ret = str_replace("\xA0", '', $ret);
 
-	return utf8_encode(trim($ret));
+	return trim($ret);
 }
 
-function substD($str) {
+function parseSubstDate($str) {
 	$tmp = tidyUp($str)
 		. date("Y", strtotime("now"));
 

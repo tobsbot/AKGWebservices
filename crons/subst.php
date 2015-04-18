@@ -77,15 +77,15 @@ foreach($weeks as $week) {
 	}
 
 	foreach ($html ->find(SEL_SUBST) as $tr) {
-		$formKey		= tidyUp($tr->find('td', 0)	->plaintext);
-		$date			= substD($tr->find('td', 1)->plaintext);
-		$period			= tidyUp($tr->find('td', 2) ->plaintext);
-		$type			= tidyUp($tr->find('td', 3) ->plaintext);
-		$lesson			= tidyUp($tr->find('td', 4) ->plaintext);
-		$lessonSubst	= tidyUp($tr->find('td', 5) ->plaintext);
-		$room			= tidyUp($tr->find('td', 6) ->plaintext);
-		$roomSubst		= tidyUp($tr->find('td', 7) ->plaintext);
-		$annotation		= tidyUp($tr->find('td', 8) ->plaintext);
+		$formKey		= utf8_encode(tidyUp(	$tr->find('td', 0) ->plaintext));
+		$date			= parseSubstDate(		$tr->find('td', 1) ->plaintext));
+		$period			= utf8_encode(tidyUp(	$tr->find('td', 2) ->plaintext));
+		$type			= utf8_encode(tidyUp(	$tr->find('td', 3) ->plaintext));
+		$lesson			= utf8_encode(tidyUp(	$tr->find('td', 4) ->plaintext));
+		$lessonSubst	= utf8_encode(tidyUp(	$tr->find('td', 5) ->plaintext));
+		$room			= utf8_encode(tidyUp(	$tr->find('td', 6) ->plaintext));
+		$roomSubst		= utf8_encode(tidyUp(	$tr->find('td', 7) ->plaintext));
+		$annotation		= utf8_encode(tidyUp(	$tr->find('td', 8) ->plaintext));
 
 		mysqli_stmt_execute($insert);
 		printf(
