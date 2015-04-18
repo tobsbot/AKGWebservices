@@ -78,7 +78,7 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 		$title = tidyUp($a ->plaintext);
 		$dateString = tidyUp($li ->find('text', 0) ->plaintext);
 
-		$htmlDetail = str_get_html(get_data($a ->href));
+		$htmlDetail = str_get_html(get_data("http://www.akg-bensheim.de" . $a ->href));
 		$description = "";
 		if(!empty($htmlDetail)) {
 
