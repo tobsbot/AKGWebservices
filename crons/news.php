@@ -73,8 +73,6 @@ do {
 	if( isset($matches[1]) &&
 		!empty($matches[1]) ) {
 		$end = $matches[1];
-
-		print("$start of $end\n");
 	}
 
 /*
