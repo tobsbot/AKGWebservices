@@ -22,7 +22,7 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	json_response(NULL, 500, "Selection of datasource failed!");
 }
 
-$sth = mysqli_query($conn, "SELECT * FROM News ORDER BY id ASC LIMIT 10 OFFSET $start");
+$sth = mysqli_query($conn, "SELECT * FROM News ORDER BY _id ASC LIMIT 10 OFFSET $start");
 $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
     $rows[] = $r;
