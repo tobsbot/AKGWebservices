@@ -85,9 +85,9 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 
 		mysqli_stmt_execute($insert);
 		printf(
-			"Parsed: [$title, $eventDate, $dateString, $description] -> inserted into %d row of the database.\r\n ",
+			"Parsed: [$title, $eventDate, $dateString, $description] -> inserted into %d row of the database.\r\n",
 			mysqli_stmt_affected_rows($insert)
-		);		
+		);
 	}
 }
 
