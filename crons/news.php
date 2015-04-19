@@ -77,6 +77,7 @@ do {
 		print("$start of $end\n");
 	}
 
+/*
 	foreach($html ->find('#content_startseite div.blog-featured div.items-row') as $news) {
 		$titleEl = $news ->find('h2.item-title a', 0);
 		$title = tidyUp($titleEl ->plaintext);
@@ -94,12 +95,12 @@ do {
 		}
 
 		mysqli_stmt_execute($insert);
-		/*
 		printf(
 			"Parsed: [$title, $article, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
 			mysqli_stmt_affected_rows($insert)
-		);*/
+		);
 	}
+	*/
 
 	$start += 4;
 } while ($start <= $end);
