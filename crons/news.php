@@ -85,7 +85,7 @@ do {
 
 		$article = "";
 		if(!empty($tmpHtml)) {
-			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('div.item-page img', 0) ->src;
+			$imageUrl = 'http://www.akg-bensheim.de' . getImg($tmpHtml ->find('div.item-page img', 0) ->src);
 			$imageDesc = tidyUp($tmpHtml ->find('div.item-page img', 0) ->title);
 
 			foreach($tmpHtml ->find('div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {

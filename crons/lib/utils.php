@@ -43,4 +43,19 @@ function parseEventDate($str) {
 
 	return strftime("%Y-%m-%d", strtotime(strtr($str, $months)));
 }
+
+function getImg($str) {
+	if(startsWith($str, "/images/")) {
+		return "http://www.akg-bensheim.de$str";
+	} else if (startsWith($str, "http://")) {
+		return $str;
+	} else {
+		return "";
+	}
+}
+
+function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
 ?>
