@@ -31,7 +31,8 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
-if (!mysqli_query($conn, $database ->tables ->Events ->create)) {
+if (!mysqli_query($conn, $database ->tables ->Events ->create) ||
+	!mysqli_query($conn, $database ->tables ->Events ->clear)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
@@ -82,16 +83,11 @@ foreach($html ->find('#jevents_body table.ev_table tbody tr') as $tr) {
 	    	}
 		}
 
-		if(event_exists($conn, $title, $eventDate) == false) {
-			mysqli_stmt_execute($insert);
-			printf(
-				"Parsed: [$title, $eventDate, $dateString, $description] -> inserted into %d row of the database.\r\n ",
-				mysqli_stmt_affected_rows($insert)
-			);
-		} else {
-			print("-> events already stored in database.\r\n");
-			break 2;
-		}
+		mysqli_stmt_execute($insert);
+		printf(
+			"Parsed: [$title, $eventDate, $dateString, $description] -> inserted into %d row of the database.\r\n ",
+			mysqli_stmt_affected_rows($insert)
+		);		
 	}
 }
 

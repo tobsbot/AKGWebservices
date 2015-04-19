@@ -31,7 +31,8 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
-if (!mysqli_query($conn, $database ->tables ->News ->create)) {
+if (!mysqli_query($conn, $database ->tables ->News ->create) ||
+	!mysqli_query($conn, $database ->tables ->News ->clear)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
 	exit();
 }
@@ -90,16 +91,11 @@ do {
 	    	}
 		}
 
-		if(news_exists($conn, $title, $imageUrl) == false) {
-			mysqli_stmt_execute($insert);
-			printf(
-				"Parsed: [$title, $article, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
-				mysqli_stmt_affected_rows($insert)
-			);
-		} else {
-			print("-> events already stored in database.\r\n");
-			break 2;
-		}
+		mysqli_stmt_execute($insert);
+		printf(
+			"Parsed: [$title, $article, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
+			mysqli_stmt_affected_rows($insert)
+		);
 	}
 
 	$start += 4;

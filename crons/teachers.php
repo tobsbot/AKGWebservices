@@ -64,6 +64,8 @@ foreach($json as $teacher) {
 		mysqli_stmt_affected_rows($insert)
 	);
 }
+
+
 ##########################################################
 print("\r\nClosing connection to database...\r\n");
 ##########################################################
