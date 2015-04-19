@@ -77,19 +77,18 @@ do {
 		$end = $matches[1];
 	}
 
-/*
 	foreach($html ->find('#content_startseite div.blog-featured div.items-row') as $news) {
 		$titleEl = $news ->find('h2.item-title a', 0);
 		$title = tidyUp($titleEl ->plaintext);
 
-		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href)) ->find('div.item-page', 0);
+		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href));
 
 		$article = "";
 		if(!empty($tmpHtml)) {
-			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('img', 0) ->src;
-			$imageDesc = tidyUp($tmpHtml ->find('img', 0) ->title);
+			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('div.item-page img', 0) ->src;
+			$imageDesc = tidyUp($tmpHtml ->find('div.item-page img', 0) ->title);
 
-			foreach($tmpHtml ->find('p[!class], div[!class]') as $p_tmp) {
+			foreach($tmpHtml ->find('div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
 				$article .= tidyUp($p_tmp ->plaintext);
 	    	}
 		}
@@ -100,7 +99,6 @@ do {
 			mysqli_stmt_affected_rows($insert)
 		);
 	}
-	*/
 
 	$start += 4;
 } while ($start <= $end);
