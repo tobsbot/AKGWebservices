@@ -79,11 +79,11 @@ do {
 		$titleEl = $news ->find('h2.item-title a', 0);
 		$title = tidyUp($titleEl ->plaintext);
 
-		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href));
+		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href)) ->find('div.item-page', 0);
 
 		$article = "";
 		if(!empty($tmpHtml)) {
-			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('div.item-page img', 0) ->src;
+			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('img', 0) ->src;
 			$imageDesc = tidyUp($tmpHtml ->find('.img_caption', 0) ->outertext);
 
 			foreach($tmpHtml ->find('div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
