@@ -6,7 +6,6 @@
   <title>Welcome to OpenShift!</title>
 
 <style>
-
 /*!
  * Bootstrap v3.0.0
  *
