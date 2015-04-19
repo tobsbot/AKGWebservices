@@ -73,6 +73,8 @@ do {
 	if( isset($matches[1]) &&
 		!empty($matches[1]) ) {
 		$end = $matches[1];
+
+		print("$start of $end\n");
 	}
 
 	foreach($html ->find('#content_startseite div.blog-featured div.items-row') as $news) {
@@ -92,10 +94,11 @@ do {
 		}
 
 		mysqli_stmt_execute($insert);
+		/*
 		printf(
 			"Parsed: [$title, $article, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
 			mysqli_stmt_affected_rows($insert)
-		);
+		);*/
 	}
 
 	$start += 4;
