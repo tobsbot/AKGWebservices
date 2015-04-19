@@ -5,6 +5,8 @@ include('lib/simple_html_dom.php');
 header('Content-Type: text/plain; charset=utf-8');
 define("URL", "http://www.akg-bensheim.de/?start=%d");
 
+ignore_user_abort(true);
+set_time_limit(0);
 
 ##########################################################
 print("Establishing connection to database...\r\n");
