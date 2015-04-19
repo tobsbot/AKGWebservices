@@ -88,7 +88,7 @@ do {
 			$imageUrl = getImg($tmpHtml ->find('div.item-page img', 0) ->src);
 			$imageDesc = tidyUp($tmpHtml ->find('div.item-page img', 0) ->title);
 
-			foreach($tmpHtml ->find('div.item-page p[class!=img_caption], div.item-page div[!class]') as $p_tmp) {
+			foreach($tmpHtml ->find('div.item-page p[class!=img_caption], div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
 				$article .= tidyUp($p_tmp ->plaintext);
 	    	}
 		}
