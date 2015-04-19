@@ -84,9 +84,9 @@ do {
 		$article = "";
 		if(!empty($tmpHtml)) {
 			$imageUrl = 'http://www.akg-bensheim.de' . $tmpHtml ->find('img', 0) ->src;
-			$imageDesc = tidyUp($tmpHtml ->innertext);
+			$imageDesc = tidyUp($tmpHtml ->find('img', 0) ->title);
 
-			foreach($tmpHtml ->find('div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
+			foreach($tmpHtml ->find('p[!class], div[!class]') as $p_tmp) {
 				$article .= tidyUp($p_tmp ->plaintext);
 	    	}
 		}
