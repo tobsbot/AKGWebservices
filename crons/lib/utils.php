@@ -19,6 +19,11 @@ function tidyUp($str) {
 	return trim($ret);
 }
 
+function tidyUpButKeep($str) {
+	$ret = str_replace("\xA0", '', $str);
+	return trim($ret);
+}
+
 function parseSubstDate($str) {
 	$tmp = tidyUp($str)
 		. date("Y", strtotime("now"));
