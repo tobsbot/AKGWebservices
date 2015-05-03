@@ -89,13 +89,13 @@ do {
 			$imageDesc = tidyUp($tmpHtml ->find('div.item-page img', 0) ->title);
 
 			foreach($tmpHtml ->find('div.item-page p[class!=img_caption], div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
-				$article .= $p_tmp ->innertext;
+				$article .= trim($p_tmp ->innertext);
 	    	}
 		}
 
 		mysqli_stmt_execute($insert);
 		printf(
-			"Parsed: [$title, " . substr($article, 0, 10) . "..., $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n ",
+			"Parsed: [$title, " . substr($article, 0, 10) . "..., $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n",
 			mysqli_stmt_affected_rows($insert)
 		);
 	}
