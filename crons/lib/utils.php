@@ -20,7 +20,7 @@ function tidyUp($str) {
 }
 
 function tidyUpButKeep($str) {
-	$ret = strip_tags($str, '<br><br/><p><a><strong>');
+	$ret = strip_tags($str, '<br><br/><p><a><strong><div><span>');
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "UTF-8");
 	$ret = str_replace("\xA0", '', $ret);
 
