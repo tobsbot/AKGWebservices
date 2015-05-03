@@ -17,8 +17,8 @@
 			"clear" : "TRUNCATE `Events`"
 		},
 		"News" : {
-            "create" : "CREATE TABLE IF NOT EXISTS `News` (`_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', `title` varchar(350) NOT NULL DEFAULT '', `article` varchar(8000) NOT NULL DEFAULT '', `imageUrl` varchar(350) NOT NULL DEFAULT '', `imageDesc` varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (`_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
-			"insert" : "INSERT INTO `News` (`title`, `article`, `imageUrl`, `imageDesc`) VALUES (?, ?, ?, ?)",
+            "create" : "CREATE TABLE IF NOT EXISTS `News` (`_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', `title` varchar(350) NOT NULL DEFAULT '', `article` varchar(8000) NOT NULL DEFAULT '', `articleUrl` varchar(350) NOT NULL DEFAULT '', `imageUrl` varchar(350) NOT NULL DEFAULT '', `imageDesc` varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (`_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+			"insert" : "INSERT INTO `News` (`title`, `article`, `articleUrl`, `imageUrl`, `imageDesc`) VALUES (?, ?, ?, ?, ?)",
 			"clear" : "TRUNCATE `News`"
 		},
 		"Teachers" : {

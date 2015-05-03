@@ -46,9 +46,10 @@ $insert = mysqli_prepare(
 
 mysqli_stmt_bind_param(
 	$insert,
-	'ssss',
+	'sssss',
 	$title,
 	$article,
+	$articleUrl,
 	$imageUrl,
 	$imageDesc
 );
@@ -81,7 +82,8 @@ do {
 		$titleEl = $news ->find('h2.item-title a', 0);
 		$title = tidyUp($titleEl ->plaintext);
 
-		$tmpHtml = str_get_html(get_data('http://www.akg-bensheim.de' . $titleEl ->href));
+		$articleUrl = 'http://www.akg-bensheim.de' . $titleEl ->href;
+		$tmpHtml = str_get_html(get_data($articleUrl));
 
 		$article = "";
 		if(!empty($tmpHtml)) {
@@ -95,7 +97,7 @@ do {
 
 		mysqli_stmt_execute($insert);
 		printf(
-			"Parsed: [$title, " . substr($article, 0, 10) . "..., $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n",
+			"Parsed: [$title, " . substr($article, 0, 10) . "..., $articleUrl, $imageUrl, $imageDesc] -> inserted into %d row of the database.\r\n",
 			mysqli_stmt_affected_rows($insert)
 		);
 	}
