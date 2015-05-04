@@ -91,7 +91,7 @@ do {
 			$imageDesc = tidyUp($tmpHtml ->find('div.item-page img', 0) ->title);
 
 			foreach($tmpHtml ->find('div.item-page p[class!=img_caption], div.item-page p[!class], div.item-page div[!class]') as $p_tmp) {
-				if(!empty($article))
+				if(!empty($article) && !endsWith($article, "\r\n"))
 					$article .= "\r\n\r\n";
 
 				$article .= tidyUp($p_tmp ->plaintext);
