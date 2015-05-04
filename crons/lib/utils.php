@@ -15,7 +15,7 @@ function tidyUp($str) {
 	$ret = strip_tags($str);
     $ret = html_entity_decode($str, ENT_COMPAT | ENT_HTML401, "ISO8859-1");
 	$ret = str_replace("\xA0", '', $ret);
-	$ret = preg_replace('/\s+/S', " ", $string);
+	$ret = str_replace('/\s+/S', " ", $string);
 
 	return trim($ret);
 }
