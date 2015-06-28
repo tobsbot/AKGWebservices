@@ -13,7 +13,7 @@
 		},
 		"Events" : {
             "create" : "CREATE TABLE IF NOT EXISTS `Events` (`_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'KEY', `title` varchar(350) NOT NULL DEFAULT '', `eventDate` date NOT NULL, `dateString` varchar(350) NOT NULL DEFAULT '', `description` varchar(350) NOT NULL DEFAULT '', PRIMARY KEY (`_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
-			"insert" : "INSERT INTO `Events` (`title`, `eventDate`, `dateString`, `description`) VALUES (?, ?, ?, ?)",
+			"insert" : "REPLACE INTO `Events` (`title`, `eventDate`, `dateString`, `description`) VALUES (?, ?, ?, ?)",
 			"clear" : "TRUNCATE `Events`"
 		},
 		"News" : {
