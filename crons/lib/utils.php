@@ -28,14 +28,15 @@ function parseSubstDate($str) {
 
 function parseEventDate($str) {
 	$months = array(
-		"Januar"	=> "January",
-		"Februar"	=> "February",
-		"März"		=> "March",
-		"April"		=> "April",
-		"Mai"		=> "May",
-		"Juni"		=> "June",
-		"August"	=> "August",
-		"September" => "September",
+		"Januar"		=> "January",
+		"Februar"		=> "February",
+		"März"			=> "March",
+		"April"			=> "April",
+		"Mai"				=> "May",
+		"Juni"			=> "June",
+		"Juli"			=> "July",
+		"August"		=> "August",
+		"September"	=> "September",
 		"Oktober" 	=> "October",
 		"November"	=> "November",
 		"Dezember"	=> "December"
