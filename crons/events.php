@@ -11,6 +11,13 @@ print("Establishing connection to database...\r\n");
 #########################################################
 
 $database = json_decode(file_get_contents("lib/database.json"));
+
+printf("Database: %s, user: %s, passwd: %s.",
+	getenv($database ->server),
+	$database ->credentials ->user,
+	$database ->credentials ->passwd
+);
+
 $conn = mysqli_connect(
 	getenv($database ->server),
 	$database ->credentials ->user,
