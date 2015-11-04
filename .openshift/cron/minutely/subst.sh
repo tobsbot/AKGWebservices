@@ -6,6 +6,6 @@ if [[ $(find $OPENSHIFT_DATA_DIR/last_run -mmin +4) ]]; then #run every 5 mins
   rm -f $OPENSHIFT_DATA_DIR/last_run
   touch $OPENSHIFT_DATA_DIR/last_run
 
-  # The command(s) that you want to run every 5 minutes
-  php ${OPENSHIFT_REPO_DIR}crons/subst.php
+  # Execute subst cron every 5 minutes
+  cd $OPENSHIFT_REPO_DIR/crons && php subst.php
 fi
