@@ -24,7 +24,7 @@ switch ($file) {
     break;
   }
 
-  $lastRun = file_get_contents($path);
+  $lastRun = filemtime($path);
   if(isset($_GET['time'])) {
     die($lastRun);
   }
