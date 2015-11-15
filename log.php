@@ -8,15 +8,15 @@ if(isset($_GET['file'])) {
 $path = getenv('OPENSHIFT_DATA_DIR') . '/logs';
 switch ($file) {
   case 'subst':
-    $file .= '/subst';
+    $path .= '/subst';
     break;
 
   case 'event':
-    $file .= '/event';
+    $path .= '/event';
     break;
 
   case 'news':
-    $file .= '/news';
+    $path .= '/news';
     break;
 
   default:
@@ -24,13 +24,13 @@ switch ($file) {
     break;
   }
 
+  $lastRun = file_get_contents($path);
   if(isset($_GET['time'])) {
-    echo filemtime($path);
+    die($lastRun);
   }
 
-  if(isset($_GET['show'])) {
-    echo file_get_contents($path);
-  }
+  echo 'Last script run on ' . date('l, d.m.Y', $lastRun);
+  echo file_get_contents($path);
 
   exit;
 ?>
