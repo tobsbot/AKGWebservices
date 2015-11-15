@@ -1,22 +1,22 @@
 <?php
 header('Content-Type: text/plain; charset=utf-8');
 
-if(isset($_GET['type'])) {
-  $type = $_GET['type'];
+if(isset($_GET['file'])) {
+  $file = $_GET['file'];
 }
 
 $path = getenv('OPENSHIFT_DATA_DIR') . '/logs';
-switch ($type) {
+switch ($file) {
   case 'subst':
-    $path .= '/subst';
+    $file .= '/subst';
     break;
 
   case 'event':
-    $path .= '/event';
+    $file .= '/event';
     break;
 
   case 'news':
-    $path .= '/news';
+    $file .= '/news';
     break;
 
   default:
@@ -24,5 +24,13 @@ switch ($type) {
     break;
   }
 
-  die(file_get_contents($path));
+  if(isset($_GET['time'])) {
+    echo filemtime($path);
+  }
+
+  if(isset($_GET['show'])) {
+    echo file_get_contents($path);
+  }
+
+  exit;
 ?>
