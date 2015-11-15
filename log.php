@@ -26,10 +26,10 @@ switch ($file) {
 
   $lastRun = filemtime($path);
   if(isset($_GET['time'])) {
-    die($lastRun);
+    die("".$lastRun);
   }
 
-  echo 'Last script run on ' . date('l, d.m.Y', $lastRun);
+  echo strftime($lastRun, "Last script run on %A, %d.%m.%Y at %T");
   echo file_get_contents($path);
 
   exit;
