@@ -29,7 +29,7 @@ switch ($file) {
     die("".$lastRun);
   }
 
-  echo strftime($lastRun, "Last script run on %A, %d.%m.%Y at %T");
+  echo strftime("Last script run on %A, %d.%m.%Y at %T\n", $lastRun);
   echo file_get_contents($path);
 
   exit;
