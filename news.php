@@ -6,6 +6,11 @@ if(isset($_GET['start'])) {
 	$start = $_GET['start'];
 }
 
+$count = 10;
+if(isset($_GET['count'])) {
+	$count = $_GET['count'];
+}
+
 $database = json_decode(file_get_contents("crons/lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
@@ -22,17 +27,24 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	json_response(NULL, 500, "Selection of datasource failed!");
 }
 
-$sth = mysqli_query($conn, "SELECT * FROM News ORDER BY _id ASC LIMIT 10 OFFSET $start");
+$sth = mysqli_query($conn, "SELECT * FROM News ORDER BY _id ASC LIMIT $count OFFSET $start");
 $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
     $rows[] = $r;
 }
 
 mysqli_close($conn);
-if(!isset($_GET['start']))
-	json_response($rows, 200, "No start passed. Returned first 10 entries.");
-else
-	json_response($rows);
+
+$message = "OK.";
+if(!isset($_GET['start'])) {
+	$message .= " No 'start' parameter passed. Returning entries from first position.";
+}
+
+if(!isset($GET['count'])) {
+	$message .= " No 'count' parameter passed. Returning 10 entries.";
+}
+
+json_response($rows, 200, $message);
 
 function json_response($data, $code = 200, $msg = "OK") {
 	print json_encode([
