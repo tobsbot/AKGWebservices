@@ -40,7 +40,7 @@ if(!isset($_GET['start'])) {
 	$message .= " No 'start' parameter passed. Returning entries from first position.";
 }
 
-if(!isset($GET['count'])) {
+if(!isset($_GET['count'])) {
 	$message .= " No 'count' parameter passed. Returning 10 entries.";
 }
 
