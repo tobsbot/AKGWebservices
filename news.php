@@ -27,6 +27,12 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	json_response(NULL, 500, "Selection of datasource failed!");
 }
 
+if(!mysqli_query($conn, "SET NAMES 'utf8'")) {
+	printf("Setting character encoding failed: %s\r\n", mysqli_error($conn));
+	mysqli_close($conn);
+	json_response(NULL, 500, "Selection of character encoding failed: %s\r\n", mysqli_error($conn));
+}
+
 $sth = mysqli_query($conn, "SELECT * FROM News ORDER BY _id ASC LIMIT $count OFFSET $start");
 $rows = array();
 while($r = mysqli_fetch_assoc($sth)) {
