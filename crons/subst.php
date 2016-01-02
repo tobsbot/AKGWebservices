@@ -35,16 +35,23 @@ print("Connected to database. Ensuring datasource...\r\n");
 
 if (!mysqli_select_db($conn, $database ->name)) {
 	printf("Selection failed: %s\r\n", mysqli_error($conn));
+	mysqli_close($conn);
+
 	exit();
 }
 
 if(!mysqli_query($conn, "SET NAMES 'utf8'")) {
 	printf("Setting character encoding failed: %s\r\n", mysqli_error($conn));
+	mysqli_close($conn);
+
+	exit();
 }
 
 if (!mysqli_query($conn, $database ->tables ->Substitution ->create) ||
 	!mysqli_query($conn, $database ->tables ->Substitution ->clear)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
+
+	mysqli_close($conn);
 	exit();
 }
 
