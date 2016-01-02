@@ -29,6 +29,10 @@ if (!mysqli_select_db($conn, $database ->name)) {
 	exit();
 }
 
+if(!mysqli_query($conn, "SET NAMES 'utf8'")) {
+	printf("Setting character encoding failed: %s\r\n", mysqli_error($conn));
+}
+
 if (!mysqli_query($conn, $database ->tables ->Teachers ->create) ||
 	!mysqli_query($conn, $database ->tables ->Teachers ->clear)) {
 	printf("Creation / Clearing failed: %s\r\n", mysqli_error($conn));
