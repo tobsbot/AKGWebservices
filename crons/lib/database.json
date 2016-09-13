@@ -2,8 +2,8 @@
 	"name" : "akgwebservices",
 	"server" : "OPENSHIFT_MYSQL_DB_HOST",
 	"credentials" : {
-		"user" : "cron",
-		"passwd" : "Xfv5FHqVvM6XpHHr"
+		"user" : "CRON_DB_USERNAME",
+		"passwd" : "CRON_DB_PASSWORD"
 	},
 	"tables" : {
 		"Substitution" : {

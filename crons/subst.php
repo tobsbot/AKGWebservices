@@ -20,8 +20,8 @@ print("Establishing connection to database...\r\n");
 $database = json_decode(file_get_contents("lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
-	$database ->credentials ->user,
-	$database ->credentials ->passwd
+	getenv($database ->credentials ->user),
+	getenv($database ->credentials ->passwd)
 );
 
 if (!$conn) {

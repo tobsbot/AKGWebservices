@@ -15,8 +15,8 @@ printf("Im here: %s", __FILE__);
 
 $conn = mysqli_connect(
 	getenv($database ->server),
-	$database ->credentials ->user,
-	$database ->credentials ->passwd
+	getenv($database ->credentials ->user),
+	getenv($database ->credentials ->passwd)
 );
 
 if (!$conn) {
