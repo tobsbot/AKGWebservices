@@ -5,7 +5,7 @@ $database = json_decode(file_get_contents("crons/lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
 	getenv($database ->credentials ->user),
-	getenv($database ->credentials ->passord)
+	getenv($database ->credentials ->passwd)
 );
 
 if (!$conn) {
