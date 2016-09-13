@@ -4,7 +4,8 @@ header('Content-Type: application/json; charset=utf-8');
 $database = json_decode(file_get_contents("crons/lib/database.json"));
 $conn = mysqli_connect(
 	getenv($database ->server),
-	"cronphp", "ettsH45nNE1cq#'aw}Ag"
+	getenv($database ->credentials ->user),
+	getenv($database ->credentials ->passord)
 );
 
 if (!$conn) {
